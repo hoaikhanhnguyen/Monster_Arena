@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.monster_arena.database.MonsterArenaRepository;
 import com.example.monster_arena.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,5 +18,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        MonsterArenaRepository repository = MonsterArenaRepository.getRepository(getApplication());
     }
 }
