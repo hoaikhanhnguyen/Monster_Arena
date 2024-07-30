@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     public static final String TAG = "ARENA_LOG";
+    Monster monster;
+
 
 
     @Override
@@ -36,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
         binding.arenaBackHomeButton.setOnClickListener(v -> handleBackHomeButtonClick());
         binding.arenaBackPreviousPageButton.setOnClickListener(v -> handleBackPreviousPageButtonClick());
     }
+    private void applyArenaEffects(Arena arena) {
 
+
+        arena.applyEffects(monster);
+        updateDisplay();
+    }
     // Common method to handle arena button clicks
     private void handleArenaButtonClick(String arena) {
         Log.d(TAG, arena + " button clicked");
