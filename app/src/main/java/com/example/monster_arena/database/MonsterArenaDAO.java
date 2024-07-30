@@ -1,11 +1,11 @@
-package com.example.monster_arena.Database;
+package com.example.monster_arena.database;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.monster_arena.Database.entities.MonsterArena;
+import com.example.monster_arena.database.entities.MonsterArena;
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ public interface MonsterArenaDAO {
     void insert(MonsterArena monsterArena);
 
     @Query("Select * from " + MonsterArenaDatabase.MONSTER_ARENA_TABLE)
-    List<MonsterArena> getAllRecord();
+    List<MonsterArena> getAllRecords();
 }

@@ -1,4 +1,4 @@
-package com.example.monster_arena.Database;
+package com.example.monster_arena.database;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,14 +7,16 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.monster_arena.Database.entities.MonsterArena;
-import com.example.monster_arena.MainActivity;
+import com.example.monster_arena.database.entities.MonsterArena;
+import com.example.monster_arena.database.typeConverters.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@TypeConverters(LocalDateTypeConverter.class)
 @Database(entities = {MonsterArena.class}, version = 1, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
@@ -53,4 +55,6 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
             //TODO: add databaseWriteExecutor.execute(() -> {...}
         }
     };
+
+    public abstract MonsterArenaDAO monsterArenaDAO();
 }

@@ -1,9 +1,9 @@
-package com.example.monster_arena.Database.entities;
+package com.example.monster_arena.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.monster_arena.Database.MonsterArenaDatabase;
+import com.example.monster_arena.database.MonsterArenaDatabase;
 
 @Entity(tableName = MonsterArenaDatabase.MONSTER_ARENA_TABLE)
 public class MonsterArena {
