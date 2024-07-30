@@ -5,15 +5,96 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/chooseArenaDisplayText"
+        android:layout_width="305dp"
+        android:layout_height="52dp"
+        android:background="@color/black"
+        android:text="Choose Your Arena!"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
+
+    <Button
+        android:id="@+id/arena1button"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:background="#C31616"
+        android:backgroundTint="#D30F0F"
+        app:backgroundTint="@null"
+        android:text="Arena 1"
+        android:textSize="24sp"
+        app:icon="@android:drawable/btn_star_big_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseArenaDisplayText" />
+
+    <Button
+        android:id="@+id/arena2button"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:background="#8ED045"
+        android:text="Arena 2"
+        android:textSize="24sp"
+        app:backgroundTint="@null"
+        app:icon="@android:drawable/btn_star_big_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/arena1button" />
+
+    <Button
+        android:id="@+id/arena3button"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:background="#32ABE2"
+        android:text="Arena 3"
+        android:textSize="24sp"
+        app:backgroundTint="@null"
+        app:icon="@android:drawable/btn_star_big_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/arena2button" />
+
+    <Button
+        android:id="@+id/arenaBackHomeButton"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="308dp"
+        android:background="@color/black"
+        android:text="Home"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/arena3button" />
+
+    <Button
+        android:id="@+id/arenaBackPreviousPageButton"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="308dp"
+        android:background="@color/black"
+        android:text="Back"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/arena3button" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
