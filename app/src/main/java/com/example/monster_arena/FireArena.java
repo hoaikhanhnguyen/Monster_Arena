@@ -1,18 +1,12 @@
 package com.example.monster_arena;
 
+import java.util.Objects;
+
 public class FireArena implements Arena {
         @Override
         public void applyEffects(Monster monster) {
-                switch (monster.getType()) {
-                        case FIRE:
-                                monster.increaseAttackPower(15); // Boost fire monsters
-                                break;
-                        case GRASS:
-                                monster.decreaseAttackPower(10); // Weaken grass monsters
-                                break;
-                        case WATER:
-                                monster.decreaseAttackPower(5); // Weaken water monsters slightly
-                                break;
-                }
+            if (Objects.requireNonNull(monster.getType()) == MonsterType.FIRE) {
+                monster.increaseAttackPower(15); // Boost fire monsters
+            }
         }
 }
