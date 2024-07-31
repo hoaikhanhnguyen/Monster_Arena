@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
+import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class MonsterArenaRepository {
     private final UserDAO userDAO;
     private final BattleDAO battleDAO;
     private final ArenaDAO arenaDAO;
+    private final MonstersDAO monstersDAO;
 
     private ArrayList<MonsterArena> allLogs;
 
@@ -30,6 +32,7 @@ public class MonsterArenaRepository {
         this.userDAO = db.userDAO();
         this.battleDAO = db.battleDAO();
         this.arenaDAO =db.arenaDAO();
+        this.monstersDAO = db.monstersDAO();
         this.allLogs = (ArrayList<MonsterArena>) this.monsterArenaDAO.getAllRecords();
     }
 
@@ -91,6 +94,12 @@ public class MonsterArenaRepository {
     public void insertArena(Arena... arena) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             arenaDAO.insert(arena);
+        });
+    }
+
+    public void insertMonsters(Monsters... monsters) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            monstersDAO.insert(monsters);
         });
     }
 }
