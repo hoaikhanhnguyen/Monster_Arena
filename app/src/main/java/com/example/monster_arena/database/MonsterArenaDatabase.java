@@ -26,7 +26,6 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
 
     // Define all Table names
     public static final String  MONSTER_ARENA_TABLE = "monsterArenaTable";
-
     private static volatile MonsterArenaDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
