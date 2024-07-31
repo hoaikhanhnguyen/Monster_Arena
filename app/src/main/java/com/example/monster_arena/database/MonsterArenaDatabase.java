@@ -11,19 +11,21 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.monster_arena.database.entities.MonsterArena;
+import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.typeConverters.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {MonsterArena.class}, version = 1, exportSchema = false)
+@Database(entities = {MonsterArena.class, Monsters.class}, version = 1, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "MonsterArena_database";
 
     // Define all Table names
     public static final String  MONSTER_ARENA_TABLE = "monsterArenaTable";
+    public static final String MONSTERS_TABLE = "monstersTable";
 
     private static volatile MonsterArenaDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -57,4 +59,6 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
     };
 
     public abstract MonsterArenaDAO monsterArenaDAO();
+    public abstract MonstersDAO monstersDAO();
+
 }

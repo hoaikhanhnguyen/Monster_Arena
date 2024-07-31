@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.example.monster_arena.database.entities.MonsterArena;
+import com.example.monster_arena.database.entities.Monsters;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -13,6 +14,7 @@ import java.util.concurrent.Future;
 public class MonsterArenaRepository {
 
     private MonsterArenaDAO monsterArenaDAO;
+    private MonstersDAO monstersDAO;
     private ArrayList<MonsterArena> allLogs;
 
     private static MonsterArenaRepository repository;
@@ -20,7 +22,10 @@ public class MonsterArenaRepository {
     public MonsterArenaRepository(Application application) {
         MonsterArenaDatabase db = MonsterArenaDatabase.getDatabase(application);
         this.monsterArenaDAO = db.monsterArenaDAO();
+        this.monstersDAO = db.monstersDAO();
+
         this.allLogs = (ArrayList<MonsterArena>) this.monsterArenaDAO.getAllRecords();
+
     }
 
     public static MonsterArenaRepository getRepository(Application application) {
@@ -63,6 +68,12 @@ public class MonsterArenaRepository {
     public void insertGymLog(MonsterArena monsterArena) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             monsterArenaDAO.insert(monsterArena);
+        });
+    }
+
+    public void insertMonsters (Monsters monsters){
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+          monstersDAO.insert(monsters);
         });
     }
 
