@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.example.monster_arena.database.entities.MonsterArena;
+import com.example.monster_arena.database.entities.User;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -12,7 +13,9 @@ import java.util.concurrent.Future;
 
 public class MonsterArenaRepository {
 
-    private MonsterArenaDAO monsterArenaDAO;
+    private final MonsterArenaDAO monsterArenaDAO;
+    private final UserDAO userDAO;
+
     private ArrayList<MonsterArena> allLogs;
 
     private static MonsterArenaRepository repository;
@@ -20,6 +23,7 @@ public class MonsterArenaRepository {
     public MonsterArenaRepository(Application application) {
         MonsterArenaDatabase db = MonsterArenaDatabase.getDatabase(application);
         this.monsterArenaDAO = db.monsterArenaDAO();
+        this.userDAO = db.userDAO();
         this.allLogs = (ArrayList<MonsterArena>) this.monsterArenaDAO.getAllRecords();
     }
 
@@ -55,15 +59,20 @@ public class MonsterArenaRepository {
         try {
             return future.get();
         }catch (InterruptedException | ExecutionException e) {
-            Log.i("Monster Arena", "Problem when getting all Gymlogs in the repository");
+            Log.i("Monster Arena", "Problem when getting all MonsterArenalogs in the repository");
         }
         return null;
     }
 
-    public void insertGymLog(MonsterArena monsterArena) {
+    public void insertMonsterArena(MonsterArena monsterArena) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             monsterArenaDAO.insert(monsterArena);
         });
     }
 
+    public void insertUser(User... user) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.insert(user);
+        });
+    }
 }
