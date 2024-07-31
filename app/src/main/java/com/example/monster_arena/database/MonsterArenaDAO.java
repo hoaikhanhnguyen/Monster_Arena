@@ -14,6 +14,6 @@ public interface MonsterArenaDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(MonsterArena monsterArena);
 
-    @Query("Select * from " + MonsterArenaDatabase.MONSTER_ARENA_TABLE)
+    @Query("Select * from " + MonsterArenaDatabase.MONSTER_ARENA_TABLE )
     List<MonsterArena> getAllRecords();
 }
