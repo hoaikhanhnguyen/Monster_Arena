@@ -11,6 +11,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.monster_arena.database.entities.MonsterArena;
+import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.typeConverters.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
@@ -24,6 +25,7 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
 
     // Define all Table names
     public static final String  MONSTER_ARENA_TABLE = "monsterArenaTable";
+    public static final String MONSTERS_TABLE = "monstersTable";
 
     private static volatile MonsterArenaDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -57,4 +59,6 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
     };
 
     public abstract MonsterArenaDAO monsterArenaDAO();
+
+    public abstract MonstersDAO monstersDAO();
 }
