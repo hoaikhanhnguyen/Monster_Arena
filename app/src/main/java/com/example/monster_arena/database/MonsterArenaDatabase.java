@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {MonsterArena.class, User.class, Battle.class}, version = 3, exportSchema = false)
+@Database(entities = {MonsterArena.class, User.class, Battle.class}, version = 4, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "userTable";
@@ -71,4 +71,6 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
     public abstract MonsterArenaDAO monsterArenaDAO();
 
     public abstract UserDAO userDAO();
+
+    public abstract BattleDAO battleDAO();
 }

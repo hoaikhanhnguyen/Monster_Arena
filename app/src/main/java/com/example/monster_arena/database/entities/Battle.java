@@ -7,7 +7,7 @@ import com.example.monster_arena.database.MonsterArenaDatabase;
 
 import java.util.Objects;
 
-@Entity(tableName = MonsterArenaDatabase.USER_TABLE)
+@Entity(tableName = MonsterArenaDatabase.BATTLE_TABLE)
 public class Battle {
 
     @PrimaryKey(autoGenerate = true)
