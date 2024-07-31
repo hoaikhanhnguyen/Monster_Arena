@@ -3,10 +3,7 @@ package com.example.monster_arena.database;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.monster_arena.database.entities.Arena;
-import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
-import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.database.entities.Monsters;
 
 import java.util.ArrayList;
@@ -16,12 +13,8 @@ import java.util.concurrent.Future;
 
 public class MonsterArenaRepository {
 
-    private final MonsterArenaDAO monsterArenaDAO;
-    private final UserDAO userDAO;
-    private final BattleDAO battleDAO;
-    private final ArenaDAO arenaDAO;
-    private final MonstersDAO monstersDAO;
-
+    private MonsterArenaDAO monsterArenaDAO;
+    private MonstersDAO monstersDAO;
     private ArrayList<MonsterArena> allLogs;
 
     private static MonsterArenaRepository repository;
@@ -29,11 +22,10 @@ public class MonsterArenaRepository {
     public MonsterArenaRepository(Application application) {
         MonsterArenaDatabase db = MonsterArenaDatabase.getDatabase(application);
         this.monsterArenaDAO = db.monsterArenaDAO();
-        this.userDAO = db.userDAO();
-        this.battleDAO = db.battleDAO();
-        this.arenaDAO =db.arenaDAO();
         this.monstersDAO = db.monstersDAO();
+
         this.allLogs = (ArrayList<MonsterArena>) this.monsterArenaDAO.getAllRecords();
+
     }
 
     public static MonsterArenaRepository getRepository(Application application) {
@@ -68,38 +60,21 @@ public class MonsterArenaRepository {
         try {
             return future.get();
         }catch (InterruptedException | ExecutionException e) {
-            Log.i("Monster Arena", "Problem when getting all MonsterArenalogs in the repository");
+            Log.i("Monster Arena", "Problem when getting all Gymlogs in the repository");
         }
         return null;
     }
 
-    public void insertMonsterArena(MonsterArena monsterArena) {
+    public void insertGymLog(MonsterArena monsterArena) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             monsterArenaDAO.insert(monsterArena);
         });
     }
 
-    public void insertUser(User... user) {
+    public void insertMonsters (Monsters monsters){
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
-            userDAO.insert(user);
+          monstersDAO.insert(monsters);
         });
     }
 
-    public void insertBattle(Battle... battle) {
-        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
-            battleDAO.insert(battle);
-        });
-    }
-
-    public void insertArena(Arena... arena) {
-        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
-            arenaDAO.insert(arena);
-        });
-    }
-
-    public void insertMonsters(Monsters monsters){
-        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
-            monstersDAO.insert(monsters);
-        });
-    }
 }
