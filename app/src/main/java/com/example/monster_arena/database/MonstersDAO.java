@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public interface MonstersDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Monsters gymLog);
+    void insert(Monsters monstersDAO);
 
     @Query("Select * from " + MonstersDatabase.MONSTERS_TABLE)
     ArrayList<Monsters> getAllRecords();
