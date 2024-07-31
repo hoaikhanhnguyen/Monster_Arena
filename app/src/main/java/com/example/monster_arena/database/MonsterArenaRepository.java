@@ -3,6 +3,7 @@ package com.example.monster_arena.database;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
 import com.example.monster_arena.database.entities.User;
@@ -17,6 +18,7 @@ public class MonsterArenaRepository {
     private final MonsterArenaDAO monsterArenaDAO;
     private final UserDAO userDAO;
     private final BattleDAO battleDAO;
+    private final ArenaDAO arenaDAO;
 
     private ArrayList<MonsterArena> allLogs;
 
@@ -27,6 +29,7 @@ public class MonsterArenaRepository {
         this.monsterArenaDAO = db.monsterArenaDAO();
         this.userDAO = db.userDAO();
         this.battleDAO = db.battleDAO();
+        this.arenaDAO =db.arenaDAO();
         this.allLogs = (ArrayList<MonsterArena>) this.monsterArenaDAO.getAllRecords();
     }
 
@@ -82,6 +85,12 @@ public class MonsterArenaRepository {
     public void insertBattle(Battle... battle) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             battleDAO.insert(battle);
+        });
+    }
+
+    public void insertArena(Arena... arena) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            arenaDAO.insert(arena);
         });
     }
 }
