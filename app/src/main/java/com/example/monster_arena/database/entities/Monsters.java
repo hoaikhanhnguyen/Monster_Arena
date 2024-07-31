@@ -3,12 +3,12 @@ package com.example.monster_arena.database.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.monster_arena.database.MonstersDatabase;
+import com.example.monster_arena.database.MonsterArenaDatabase;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity(tableName = MonstersDatabase.MONSTERS_TABLE)
+@Entity(tableName = MonsterArenaDatabase.MONSTERS_TABLE)
 public class Monsters {
     @PrimaryKey(autoGenerate = true)
     private String name;
