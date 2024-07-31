@@ -8,6 +8,7 @@ import androidx.room.Query;
 import com.example.monster_arena.database.entities.Monsters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Dao
 public interface MonstersDAO {
@@ -15,6 +16,6 @@ public interface MonstersDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Monsters[] monsters);
 
-    @Query("Select * from " + MonsterArenaDatabase.MONSTER_ARENA_TABLE)
-    ArrayList<Monsters> getMonsters();
+    @Query("Select * from " + MonsterArenaDatabase.MONSTERS_TABLE)
+    List<Monsters> getMonsters();
 }

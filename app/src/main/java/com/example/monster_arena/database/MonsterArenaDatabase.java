@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {MonsterArena.class, User.class, Battle.class, Arena.class, Monsters.class}, version = 5, exportSchema = false)
+@Database(entities = {MonsterArena.class, User.class, Battle.class, Arena.class, Monsters.class}, version = 6, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "userTable";
@@ -31,7 +31,7 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
     public static final String  MONSTER_ARENA_TABLE = "monsterArenaTable";
     public static final String BATTLE_TABLE = "battleTable";
     public static final String ARENA_TABLE = "arenaTable";
-    private static final String MONSTERS_TABLE = "monstersTable";
+    public static final String MONSTERS_TABLE = "monstersTable";
 
     private static volatile MonsterArenaDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
