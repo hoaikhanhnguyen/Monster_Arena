@@ -15,6 +15,6 @@ public interface MonstersDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Monsters[] monsters);
 
-    @Query("Select * from " + MonsterArenaDatabase.)
+    @Query("Select * from " + MonsterArenaDatabase.MONSTERS_TABLE)
     ArrayList<Monsters> getMonsters();
 }
