@@ -42,8 +42,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         arena.applyEffects(monster);
-        updateDisplay();
+        updateDisplay(arena.toString());
     }
+
+    private void updateDisplay(String arena) {
+        // Implement logic to update the display based on the selected arena
+        binding.chooseArenaDisplayText.setText("You selected " + arena);
+        Log.d(TAG, "Display updated for " + arena);
+    }
+
     // Common method to handle arena button clicks
     private void handleArenaButtonClick(String arena) {
         Log.d(TAG, arena + " button clicked");
@@ -63,12 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Method to update display based on selected arena
-    private void updateDisplay(String arena) {
-        // Implement logic to update the display based on the selected arena
-        binding.chooseArenaDisplayText.setText("You selected " + arena);
-        Log.d(TAG, "Display updated for " + arena);
-    }
+
+
 
     // Placeholder for method to get information from display
     private void getInformationFromDisplay() {

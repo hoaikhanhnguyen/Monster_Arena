@@ -3,10 +3,15 @@ package com.example.monster_arena;
 import java.util.Objects;
 
 public class FireArena implements Arena {
+    /**
+     * This method checks for fire monsters and boost fire monster by 15 attack
+     * @param monster
+     */
+
         @Override
         public void applyEffects(Monster monster) {
-            if (Objects.requireNonNull(monster.getType()) == MonsterType.FIRE) {
-                monster.increaseAttackPower(15); // Boost fire monsters
+            if (MonsterType.FIRE.equals(monster.getType())) {
+                monster.increaseAttackPower(15); //
             }
         }
 }
