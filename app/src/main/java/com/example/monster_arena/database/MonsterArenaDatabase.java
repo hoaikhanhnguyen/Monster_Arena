@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {MonsterArena.class}, version = 1, exportSchema = false)
+@Database(entities = {MonsterArena.class, Monsters.class}, version = 1, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "MonsterArena_database";
