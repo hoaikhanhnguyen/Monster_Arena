@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.monster_arena.database.MonsterArenaDatabase;
-import com.example.monster_arena.database.MonstersDatabase;
 
 import java.time.LocalDate;
 import java.util.Objects;
