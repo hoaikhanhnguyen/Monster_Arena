@@ -3,6 +3,8 @@ package com.example.monster_arena.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
@@ -103,19 +105,11 @@ public class MonsterArenaRepository {
         });
     }
 
-    public User getUserUserByUserName(String username) {
-        Future<User> future = MonsterArenaDatabase.databaseWriteExecutor.submit(
-                new Callable<User>() {
-                    @Override
-                    public User call() throws Exception {
-                        return userDAO.getUserByUserName(username);
-                    }
-                });
-        try{
-            future.get();
-        }catch (InterruptedException | ExecutionException e) {
-            Log.i("Monster Arena", "Problem when getting user by username");
-        }
-        return null;
+    public LiveData<User> getUserUserByUserName(String username) {
+        return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<User> getUserUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
     }
 }
