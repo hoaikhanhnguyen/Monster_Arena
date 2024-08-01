@@ -21,13 +21,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {MonsterArena.class, User.class, Battle.class, Arena.class, Monsters.class}, version = 6, exportSchema = false)
+@Database(entities = {MonsterArena.class, User.class, Battle.class, Arena.class, Monsters.class}, version = 8, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
-    public static final String USER_TABLE = "userTable";
+
     private static final String DATABASE_NAME = "MonsterArenaDatabase";
 
     // Define all Table names
+    public static final String USER_TABLE = "userTable";
     public static final String  MONSTER_ARENA_TABLE = "monsterArenaTable";
     public static final String BATTLE_TABLE = "battleTable";
     public static final String ARENA_TABLE = "arenaTable";
@@ -63,10 +64,10 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
-                User admin = new User("admin1", "admin1");
+                User admin = new User("admin", "admin");
                 admin.setAdmin(true);
                 dao.insert(admin);
-                User testUser1 = new User("testUser1", "testUser1");
+                User testUser1 = new User("testUser", "testUser");
                 dao.insert(testUser1);
             });
         }

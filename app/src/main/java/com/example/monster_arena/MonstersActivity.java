@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.monster_arena.databinding.ActivityMonstersBinding;
 import com.example.monster_arena.database.MonsterArenaRepository;
-import com.example.monster_arena.database.MonstersDatabase;
 
 
 public class MonstersActivity extends AppCompatActivity {

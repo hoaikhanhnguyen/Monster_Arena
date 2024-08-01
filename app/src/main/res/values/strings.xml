@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Monster_Arena</string>
+    <string name="welcome_to_monster_arena">Welcome to Monster Arena</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>

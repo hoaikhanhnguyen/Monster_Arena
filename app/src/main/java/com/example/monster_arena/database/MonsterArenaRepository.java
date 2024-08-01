@@ -3,6 +3,8 @@ package com.example.monster_arena.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
@@ -101,5 +103,13 @@ public class MonsterArenaRepository {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             monstersDAO.insert(monsters);
         });
+    }
+
+    public LiveData<User> getUserUserByUserName(String username) {
+        return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<User> getUserUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
     }
 }
