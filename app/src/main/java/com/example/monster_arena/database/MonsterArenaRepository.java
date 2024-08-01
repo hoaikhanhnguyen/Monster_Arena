@@ -102,4 +102,20 @@ public class MonsterArenaRepository {
             monstersDAO.insert(monsters);
         });
     }
+
+    public User getUserUserByUserName(String username) {
+        Future<User> future = MonsterArenaDatabase.databaseWriteExecutor.submit(
+                new Callable<User>() {
+                    @Override
+                    public User call() throws Exception {
+                        return userDAO.getUserByUserName(username);
+                    }
+                });
+        try{
+            future.get();
+        }catch (InterruptedException | ExecutionException e) {
+            Log.i("Monster Arena", "Problem when getting user by username");
+        }
+        return null;
+    }
 }

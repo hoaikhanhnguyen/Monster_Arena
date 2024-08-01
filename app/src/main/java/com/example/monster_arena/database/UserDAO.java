@@ -23,4 +23,7 @@ public interface UserDAO {
 
     @Query("DELETE from " + MonsterArenaDatabase.USER_TABLE)
     void deleteAll();
+
+    @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " WHERE username == :username")
+    User getUserByUserName(String username);
 }
