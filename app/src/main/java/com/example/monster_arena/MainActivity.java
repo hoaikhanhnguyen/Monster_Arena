@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.monster_arena.MAIN_ACTIVITY_USER_ID";
     static final String SHARED_PREFERENCE_USERID_KEY =" com.example.monster_arena.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE =" com.example.monster_arena.SHARED_PREFERENCE_USERID_VALUE";
+    static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.monster_arena.SHARED_INSTANCE_STATE_USERID_KEY";
 
     private static final int LOGGED_OUT = -1;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         repository = MonsterArenaRepository.getRepository(getApplication());
-        loginUser();
+        loginUser(savedInstanceState);
 
         if(loggedInUserId == -1) {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
@@ -51,26 +52,43 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser() {
+    private void loginUser(Bundle savedInstanceState) {
         // Check shared preferences for logged in user
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(SHARED_PREFERENCE_USERID_KEY,
                 Context.MODE_PRIVATE);
-        loggedInUserId = sharedPreferences.getInt(SHARED_PREFERENCE_USERID_VALUE, LOGGED_OUT);
-        if (loggedInUserId != LOGGED_OUT) {
-            return;
+        if (sharedPreferences.contains(SHARED_PREFERENCE_USERID_VALUE)) {
+            loggedInUserId = sharedPreferences.getInt(SHARED_PREFERENCE_USERID_VALUE, LOGGED_OUT);
         }
-
-        // Check intent for logged in user
-        loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
-        if(loggedInUserId == LOGGED_OUT) {
+        if (loggedInUserId == LOGGED_OUT  && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
+            loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
+        }
+        if (loggedInUserId == LOGGED_OUT) {
+            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+        }
+        if (loggedInUserId == LOGGED_OUT) {
             return;
         }
         LiveData<User> userObserver = repository.getUserUserByUserId(loggedInUserId);
         userObserver.observe(this, user -> {
+            this.user = user;
             if(user != null) {
                 invalidateOptionsMenu();
+            }else {
+                //TODO: verify if this is an issue
+                //logout();
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_USERID_KEY,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor= sharedPreferences.edit();
+        sharedPrefEditor.putInt(MainActivity.SHARED_PREFERENCE_USERID_KEY, loggedInUserId);
+        sharedPrefEditor.apply();
     }
 
     @Override
