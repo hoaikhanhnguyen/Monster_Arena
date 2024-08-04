@@ -53,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
         updateSharedPreference();
 
+        binding.manageUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ManageUserActivity.manageUserActivityIntentFactory(getApplicationContext()));
+            }
+        });
     }
 
     private void loginUser(Bundle savedInstanceState) {

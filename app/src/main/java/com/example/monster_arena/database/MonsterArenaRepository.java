@@ -12,6 +12,7 @@ import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -113,4 +114,7 @@ public class MonsterArenaRepository {
         return userDAO.getUserByUserId(userId);
     }
 
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
 }

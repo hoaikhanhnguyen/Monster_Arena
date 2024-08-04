@@ -14,4 +14,8 @@
     <string name="view_monsters">View Monsters</string>
     <string name="manage_users">Manage Users</string>
     <string name="welcome">Welcome,</string>
+    <string name="user">User</string>
+    <string name="admin">Admin</string>
+    <string name="non_admin">Non-admin</string>
+    <string name="user_image">User Image</string>
 </resources>

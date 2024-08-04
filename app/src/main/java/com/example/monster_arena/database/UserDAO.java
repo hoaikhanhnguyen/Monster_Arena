@@ -19,8 +19,8 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " ORDER BY username")
-    LiveData<List<User>> getAllUsers();
+    @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " ORDER BY userName")
+    List<User> getAllUsers();
 
     @Query("DELETE from " + MonsterArenaDatabase.USER_TABLE)
     void deleteAll();

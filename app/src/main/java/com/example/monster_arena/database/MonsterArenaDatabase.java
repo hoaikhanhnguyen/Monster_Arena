@@ -49,6 +49,7 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
                                     DATABASE_NAME)
                             .fallbackToDestructiveMigration()
                             .addCallback(addDefaultValues)
+                            .allowMainThreadQueries()
                             .build();
                 }
             }
