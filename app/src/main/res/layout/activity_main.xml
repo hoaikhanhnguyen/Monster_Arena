@@ -72,6 +72,7 @@
         android:layout_marginTop="16dp"
         android:text="Battle!"
         android:textSize="36sp"
-        android:id="@+id/battleButton" />
+        android:id="@+id/battleButton"
+        android:backgroundTint="@color/cardview_dark_background"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

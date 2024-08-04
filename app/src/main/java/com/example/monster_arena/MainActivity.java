@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if (loggedInUserId == LOGGED_OUT) {
             return;
         }
-        LiveData<User> userObserver = repository.getUserUserByUserId(loggedInUserId);
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
         userObserver.observe(this, user -> {
             this.user = user;
             if(user != null) {

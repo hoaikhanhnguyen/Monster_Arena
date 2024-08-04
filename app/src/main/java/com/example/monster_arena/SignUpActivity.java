@@ -17,22 +17,25 @@ import androidx.lifecycle.LiveData;
 import com.example.monster_arena.database.MonsterArenaRepository;
 import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityLoginBinding;
+import com.example.monster_arena.databinding.ActivitySignUpBinding;
 
-public class LoginActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
-    private ActivityLoginBinding binding;
+    private ActivitySignUpBinding binding;
 
     private MonsterArenaRepository repository;
+    private final int loggedInUserId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-
         EdgeToEdge.enable(this);
-        setContentView(binding.getRoot());
 
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
         repository = MonsterArenaRepository.getRepository(getApplication());
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -40,60 +43,61 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyUser();
-            }
-        });
-
-        binding.signupButton.setOnClickListener(new View.OnClickListener() {
+        binding.signupCreationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signUpUser();
             }
         });
-    }
 
-    private void verifyUser() {
-        String username = binding.userNameLoginEditText.getText().toString();
-
-        if(username.isEmpty()) {
-            toastMaker("username should not be blank");
-            return;
-        }
-        LiveData<User> userObserver = repository.getUserByUserName(username);
-        userObserver.observe(this, user -> {
-            if(user != null) {
-                String password = binding.passwordLoginEditText.getText().toString();
-                if(password.equals(user.getPassword())) {
-                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(MainActivity.SHARED_PREFERENCE_USERID_KEY,
-                            Context.MODE_PRIVATE);
-                    SharedPreferences.Editor sharedPrefEditor= sharedPreferences.edit();
-                    sharedPrefEditor.putInt(MainActivity.SHARED_PREFERENCE_USERID_KEY, user.getId());
-                    sharedPrefEditor.apply();
-
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-                }else {
-                    toastMaker("Invalid Password");
-                    binding.passwordLoginEditText.setSelection(0);
-                }
-            }else {
-                toastMaker(String.format("%s is not a valid username.", username));
-                binding.userNameLoginEditText.setSelection(0);
+        binding.signupCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUpCancel();
             }
         });
     }
 
-    public void signUpUser() {
-        startActivity(SignUpActivity.signUpActivityIntentFactory(getApplicationContext()));
+    private void signUpUser() {
+        String username = binding.userNameCreationEditText.getText().toString();
+        String password = binding.passwordCreationEditText.getText().toString();
+        String confirmPassword = binding.confirmPasswordCreationEditText.getText().toString();
+
+        if(username.isEmpty()) {
+            toastMaker("Username should not be blank");
+            return;
+        }
+
+        if(password.isEmpty() || confirmPassword.isEmpty()) {
+            toastMaker("Password cannot be empty");
+        }
+
+        if(!password.equals(confirmPassword)) {
+            toastMaker("Passwords must match");
+        }
+
+        LiveData<User> userObserver = repository.getUserByUserName(username);
+        userObserver.observe(this, user -> {
+            if(user != null) {
+                toastMaker(String.format("%s is not an available username.", username));
+                binding.userNameCreationEditText.setSelection(0);
+            }else {
+                repository.insertUser(new User(username, password));
+                toastMaker("User Account Successfully Created");
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
+    }
+
+    public void signUpCancel() {
+        startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
     }
 
     private void toastMaker(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    static Intent loginIntentFactory(Context context) {
-        return new Intent(context, LoginActivity.class);
+    static Intent signUpActivityIntentFactory(Context context) {
+        return new Intent(context, SignUpActivity.class);
     }
 }

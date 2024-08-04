@@ -30,4 +30,5 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
 }
