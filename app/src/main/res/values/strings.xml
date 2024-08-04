@@ -6,4 +6,8 @@
     <string name="login">Login</string>
     <string name="PREFERENCE_FILE_KEY">preferenceFileKeyMonsterArena</string>
     <string name="PREFERENCE_USERID_KEY">preferenceUserIdKeyMonsterArena</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -105,11 +105,12 @@ public class MonsterArenaRepository {
         });
     }
 
-    public LiveData<User> getUserUserByUserName(String username) {
+    public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
     }
 
-    public LiveData<User> getUserUserByUserId(int userId) {
+    public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
     }
+
 }
