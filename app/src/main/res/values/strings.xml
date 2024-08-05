@@ -19,7 +19,7 @@
     <string name="non_admin">Non-admin</string>
     <string name="user_image">User Image</string>
     <string name="battle_results_title">Battle Results</string>
-    <string name="battle_results_button">Battle Results</string>
+    <string name="battle_details_button">Battle Details</string>
     <string name="battle_history_button_in_batResults">Battle History</string>
     <string name="exit_in_batResults">Exit</string>
 </resources>

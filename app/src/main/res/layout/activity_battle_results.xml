@@ -29,11 +29,11 @@
         app:layout_constraintTop_toBottomOf="@id/BattleResultsTitle" />
 
     <Button
-        android:id="@+id/BattleResultsButton"
+        android:id="@+id/BattleDetailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        android:text="@string/battle_results_button"
+        android:text="@string/battle_details_button"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BattleResultsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/BattleDetailsButton" />
 
     <Button
         android:id="@+id/ExitButtonInBatResults"

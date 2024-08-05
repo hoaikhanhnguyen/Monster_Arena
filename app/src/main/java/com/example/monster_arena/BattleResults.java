@@ -19,7 +19,7 @@ public class BattleResults extends AppCompatActivity {
         setContentView(R.layout.activity_battle_results);
 
         //TODO: Button will take you to the Battle Results activity
-        binding.BattleResultsButton.setOnClickListener(new View.OnClickListener() {
+        binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
