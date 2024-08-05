@@ -12,7 +12,7 @@
         android:layout_height="150dip"
         android:id="@+id/titleLoginTextView"
         android:textSize="42sp"
-        android:text="Welcome,"
+        android:text="@string/welcome"
         android:gravity="center"
         android:layout_margin="16dip"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,13 +20,25 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:layout_width="390dp"
+        android:layout_width="300dp"
+        android:layout_height="125dp"
+        android:id="@+id/manageUsersButton"
+        android:gravity="center"
+        android:layout_margin="16dip"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/manage_users"
+        android:textSize="36sp" />
+
+    <Button
+        android:layout_width="300dp"
         android:layout_height="125dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:text="View Monsters"
+        android:text="@string/view_monsters"
         android:textSize="36sp"
         android:id="@+id/monsterButton" />
 
@@ -37,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/monsterButton"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:text="Select Arena"
+        android:text="@string/select_arena"
         android:textSize="36sp"
         android:id="@+id/arenaButton" />
 

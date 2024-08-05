@@ -19,8 +19,11 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " ORDER BY username")
-    LiveData<List<User>> getAllUsers();
+    @Query("DELETE FROM " + MonsterArenaDatabase.USER_TABLE + " WHERE id = :id")
+    void deleteUserById(int id);
+
+    @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " ORDER BY userName")
+    List<User> getAllUsers();
 
     @Query("DELETE from " + MonsterArenaDatabase.USER_TABLE)
     void deleteAll();
@@ -28,7 +31,12 @@ public interface UserDAO {
     @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
 
+    @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " WHERE username == :username")
+    User getUserByName(String username);
+
     @Query("SELECT * FROM " + MonsterArenaDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
 
+    @Query("UPDATE " + MonsterArenaDatabase.USER_TABLE + " SET isAdmin = 1 WHERE userName == :username")
+    void updateAdmin(String username);
 }

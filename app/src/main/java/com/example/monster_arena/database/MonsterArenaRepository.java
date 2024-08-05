@@ -12,6 +12,7 @@ import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -87,6 +88,18 @@ public class MonsterArenaRepository {
         });
     }
 
+    public void deleteUserById(int id) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.deleteUserById(id);
+        });
+    }
+
+    public void delete(User user) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.delete(user);
+        });
+    }
+
     public void insertBattle(Battle... battle) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             battleDAO.insert(battle);
@@ -109,8 +122,21 @@ public class MonsterArenaRepository {
         return userDAO.getUserByUserName(username);
     }
 
+    public User getUserByName(String username) {
+        return userDAO.getUserByName(username);
+    }
+
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
     }
 
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
+
+    public void updateAdmin(String username) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.updateAdmin(username);
+        });
+    }
 }
