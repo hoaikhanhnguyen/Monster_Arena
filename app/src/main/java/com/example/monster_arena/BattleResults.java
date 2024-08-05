@@ -1,8 +1,11 @@
 package com.example.monster_arena;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.monster_arena.databinding.ActivityBattleResultsBinding;
 
 public class BattleResults extends AppCompatActivity {
@@ -35,8 +38,13 @@ public class BattleResults extends AppCompatActivity {
         binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), );
+                startActivity(intent);
             }
         });
+    }
+
+    public static Intent battleResultsIntentFactory(Context context) {
+        return new Intent(context, BattleResults.class);
     }
 }
