@@ -70,10 +70,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(password.isEmpty() || confirmPassword.isEmpty()) {
             toastMaker("Password cannot be empty");
+            return;
         }
 
         if(!password.equals(confirmPassword)) {
             toastMaker("Passwords must match");
+            return;
         }
 
         LiveData<User> userObserver = repository.getUserByUserName(username);
