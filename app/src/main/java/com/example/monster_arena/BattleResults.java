@@ -1,24 +1,42 @@
 package com.example.monster_arena;
-
 import android.os.Bundle;
+import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import com.example.monster_arena.databinding.ActivityBattleResultsBinding;
 
 public class BattleResults extends AppCompatActivity {
+
+    private ActivityBattleResultsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        binding = ActivityBattleResultsBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_battle_results);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        //TODO: Button will take you to the Battle Results activity
+        binding.BattleResultsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //TODO: Button takes you to the Battle History activity.
+        binding.BattleHistoryButtonInBatResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //TODO: Button takes you to the Welcome Users page.
+        binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
         });
     }
 }
