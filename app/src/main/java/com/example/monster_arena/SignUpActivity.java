@@ -78,17 +78,17 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        LiveData<User> userObserver = repository.getUserByUserName(username);
-        userObserver.observe(this, user -> {
-            if(user != null) {
+        User user = repository.getUserByName(username);
+        if(user != null) {
+            if(username.equals(user.getUserName())) {
                 toastMaker(String.format("%s is not an available username.", username));
                 binding.userNameCreationEditText.setSelection(0);
-            }else {
-                repository.insertUser(new User(username, password));
-                toastMaker("User Account Successfully Created");
-                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
             }
-        });
+        }else {
+            repository.insertUser(new User(username, password));
+            toastMaker("User Account Successfully Created");
+            startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
+        }
     }
 
     public void signUpCancel() {
