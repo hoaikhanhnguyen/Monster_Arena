@@ -16,31 +16,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.databinding.ActivityMonstersBinding;
 import com.example.monster_arena.database.MonsterArenaRepository;
-
 import java.util.List;
 
 
 public class MonstersActivity extends AppCompatActivity implements Monster_RecyclerViewInterface {
 
-    ActivityMonstersBinding binding;
+    private ActivityMonstersBinding binding;
     private MonsterArenaRepository repository;
-
-    public static final String TAG = "RSG_MONSTERS_LOG";
-
-    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityMonstersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MonsterArenaRepository repository = MonsterArenaRepository.getRepository(getApplication());
-        assert  repository != null;
+        repository = MonsterArenaRepository.getRepository(getApplication());
+        //assert  repository != null;
+
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_monsters);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.monsters), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -50,7 +47,7 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
    }
 
     private void getRoomData() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.monsterListViewTable);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Monsters> monsters = repository.getAllMonsters();
         Monster_RecyclerViewAdapter adapter = new Monster_RecyclerViewAdapter((Context) this,monsters, (Monster_RecyclerViewInterface) this);
@@ -58,7 +55,7 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         recyclerView.setAdapter(adapter);
     }
 
-    static Intent manageMonsterActivtyIntentFactory(Context context){
+    static Intent manageMonsterActivityIntentFactory(Context context){
         return new Intent(context, MonstersActivity.class);
     }
 

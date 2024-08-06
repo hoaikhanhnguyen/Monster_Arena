@@ -7,7 +7,6 @@ import androidx.room.Delete;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import com.example.monster_arena.database.entities.Monsters;
-import com.example.monster_arena.database.entities.User;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 public interface MonstersDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Monsters[] monsters);
+    void insert(Monsters monsters);
 
     @Delete
     void delete(Monsters monster);

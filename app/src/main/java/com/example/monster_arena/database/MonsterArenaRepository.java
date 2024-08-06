@@ -109,7 +109,7 @@ public class MonsterArenaRepository {
         });
     }
 
-    public void insertMonsters(Monsters... monsters) {
+    public void insertMonsters(Monsters monsters) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             monstersDAO.insert(monsters);
         });
