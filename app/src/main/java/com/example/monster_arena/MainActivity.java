@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
             }
         });
+        binding.monsterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(MonstersActivity.manageMonsterActivityIntentFactory(getApplicationContext()));
+            }
+        });
     }
 
     private void loginUser(Bundle savedInstanceState) {

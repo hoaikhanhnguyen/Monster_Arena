@@ -1,14 +1,11 @@
 package com.example.monster_arena.database.entities;
 
 import androidx.room.Entity;
-import androidx.room.Insert;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import com.example.monster_arena.database.MonsterArenaDatabase;
-
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -41,6 +38,10 @@ public class Monsters {
         this.agility = agility;
         this.experience = experience;
         //created_at = LocalDateTime.now();
+    }
+
+    public Object getMonsterName() {
+        return name;
     }
 
     public class LocalDateTypeConverter {

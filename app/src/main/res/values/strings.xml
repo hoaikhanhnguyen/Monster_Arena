@@ -26,4 +26,14 @@
     <string name="return_battle_details">Return</string>
     <string name="return_battle_history">Return</string>
     <string name="battle_history_title">Battle History</string>
+    <string name="select_your_arena">Select Your Arena</string>
+    <string name="arena_1">Arena 1</string>
+    <string name="arena_2">Arena 2</string>
+    <string name="arena_3">Arena 3</string>
+    <string name="home">Home</string>
+    <string name="back">Back</string>
+    <string name="trainButtonText">Train</string>
+    <string name="monster_roster_title">Monster Roster</string>
+    <string name="captureButtonText">Capture</string>
+    <string name="exitButtonText">Exit</string>
 </resources>
