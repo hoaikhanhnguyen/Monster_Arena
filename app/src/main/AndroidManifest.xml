@@ -13,10 +13,10 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".BattleResults"
+            android:name=".BattleDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".BattleDetailsActivity"
+            android:name=".BattleResults"
             android:exported="false" />
         <activity
             android:name=".BattleHistoryActivity"

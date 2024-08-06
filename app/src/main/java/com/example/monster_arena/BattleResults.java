@@ -6,11 +6,13 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityBattleResultsBinding;
 
 public class BattleResults extends AppCompatActivity {
 
     private ActivityBattleResultsBinding binding;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class BattleResults extends AppCompatActivity {
         binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
             }
         });
     }
