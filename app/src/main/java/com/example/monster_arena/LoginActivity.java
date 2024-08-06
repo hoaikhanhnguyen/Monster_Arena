@@ -46,6 +46,13 @@ public class LoginActivity extends AppCompatActivity {
                 verifyUser();
             }
         });
+
+        binding.signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUpUser();
+            }
+        });
     }
 
     private void verifyUser() {
@@ -55,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             toastMaker("username should not be blank");
             return;
         }
-        LiveData<User> userObserver = repository.getUserUserByUserName(username);
+        LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
             if(user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
@@ -76,6 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                 binding.userNameLoginEditText.setSelection(0);
             }
         });
+    }
+
+    public void signUpUser() {
+        startActivity(SignUpActivity.signUpActivityIntentFactory(getApplicationContext()));
     }
 
     private void toastMaker(String message) {

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
         updateSharedPreference();
 
+        binding.manageUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ManageUserActivity.manageUserActivityIntentFactory(getApplicationContext()));
+            }
+        });
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -70,11 +76,12 @@ public class MainActivity extends AppCompatActivity {
         if (loggedInUserId == LOGGED_OUT) {
             return;
         }
-        LiveData<User> userObserver = repository.getUserUserByUserId(loggedInUserId);
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
         userObserver.observe(this, user -> {
             this.user = user;
             if(user != null) {
                 invalidateOptionsMenu();
+                checkAdmin(user);
             }
         });
     }
@@ -109,6 +116,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    private void checkAdmin(User user) {
+        if (user.isAdmin()) {
+            binding.titleLoginTextView.setVisibility(View.INVISIBLE);
+        } else {
+            binding.manageUsersButton.setVisibility(View.GONE);
+            binding.titleLoginTextView.setText(String.format("Welcome, %s", user.getUserName()));
+        }
     }
 
     private void showLogoutDialog() {

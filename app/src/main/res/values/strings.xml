@@ -6,8 +6,4 @@
     <string name="login">Login</string>
     <string name="PREFERENCE_FILE_KEY">preferenceFileKeyMonsterArena</string>
     <string name="PREFERENCE_USERID_KEY">preferenceUserIdKeyMonsterArena</string>
-    <string name="trainButtonText">Train</string>
-    <string name="monster_roster_title">Monster Roster</string>
-    <string name="captureButtonText">Capture</string>
-    <string name="exitButtonText">Exit</string>
 </resources>
