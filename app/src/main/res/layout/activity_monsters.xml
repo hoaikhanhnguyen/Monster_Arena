@@ -9,12 +9,30 @@
     tools:context=".MonstersActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="204dp"
+        android:layout_height="50dp"
+        android:id="@+id/monsterRosterTitle"
+        android:text="@string/monster_roster_title"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="350dp"
+        android:layout_height="672dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="58dp"
+        app:layout_constraintTop_toBottomOf="@+id/monsterRosterTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,15 +2,12 @@ package com.example.monster_arena.database;
 
 import android.app.Application;
 import android.util.Log;
-
 import androidx.lifecycle.LiveData;
-
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
 import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -137,6 +134,21 @@ public class MonsterArenaRepository {
     public void updateAdmin(String username) {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.updateAdmin(username);
+        });
+    }
+    public List<Monsters> getAllMonsters() {return monstersDAO.getMonsters();}
+
+    public LiveData<Monsters> getMonsterByMonsterName(String monsterName) {
+        return monstersDAO.getMonsterByMonsterName(monsterName);
+    }
+
+    public Monsters getMonsterByName(String monsterName) {
+        return monstersDAO.getMonsterByName(monsterName);
+    }
+
+    public void delete(Monsters monster) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            monstersDAO.delete(monster);
         });
     }
 }

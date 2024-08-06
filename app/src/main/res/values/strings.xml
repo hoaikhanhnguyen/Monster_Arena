@@ -26,4 +26,8 @@
     <string name="return_battle_details">Return</string>
     <string name="return_battle_history">Return</string>
     <string name="battle_history_title">Battle History</string>
+    <string name="trainButtonText">Train</string>
+    <string name="monster_roster_title">Monster Roster</string>
+    <string name="captureButtonText">Capture</string>
+    <string name="exitButtonText">Exit</string>
 </resources>
