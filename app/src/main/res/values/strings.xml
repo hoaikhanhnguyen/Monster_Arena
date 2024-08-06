@@ -18,4 +18,6 @@
     <string name="admin">Admin</string>
     <string name="non_admin">Non-admin</string>
     <string name="user_image">User Image</string>
+    <string name="return_battle_history">Return</string>
+    <string name="battle_history_title">Battle History</string>
 </resources>
