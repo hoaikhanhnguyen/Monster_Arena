@@ -58,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(ManageUserActivity.manageUserActivityIntentFactory(getApplicationContext()));
             }
         });
+
+        binding.battleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
+            }
+        });
     }
 
     private void loginUser(Bundle savedInstanceState) {

@@ -23,7 +23,7 @@ public class BattleDetailsActivity extends AppCompatActivity {
         binding.returnButtonBatDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
             }
         });
     }

@@ -20,23 +20,23 @@ public class BattleResults extends AppCompatActivity {
         binding = ActivityBattleResultsBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_battle_results);
 
-        //TODO: Button will take you to the Battle Results activity
+        //TODO: Button will take you to the Battle Results activity / DOES NOT WORK
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
             }
         });
 
-        //TODO: Button takes you to the Battle History activity.
+        //TODO: Button takes you to the Battle History activity / DOES NOT WORK
         binding.BattleHistoryButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(BattleHistoryActivity.battleHistoryIntentFactory(getApplicationContext()));
             }
         });
 
-        //TODO: Button takes you to the Welcome Users page.
+        //TODO: Button takes you to the Welcome Users page / DOES NOT WORK
         binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

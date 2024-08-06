@@ -28,7 +28,7 @@ public class BattleHistoryActivity extends AppCompatActivity {
         binding.returnButtonBattleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
             }
         });
     }
