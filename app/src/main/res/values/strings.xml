@@ -22,4 +22,6 @@
     <string name="battle_details_button">Battle Details</string>
     <string name="battle_history_button_in_batResults">Battle History</string>
     <string name="exit_in_batResults">Exit</string>
+    <string name="battle_details_title">Battle Details</string>
+    <string name="return_battle_details">Return</string>
 </resources>
