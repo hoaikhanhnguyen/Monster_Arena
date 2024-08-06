@@ -9,12 +9,64 @@
     tools:context=".MonstersActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/monsterRoster"
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:layout_margin="16dip"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/monster_roster_title"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/trainButton1"
+        android:layout_width="125dip"
+        android:layout_height="75dip"
+        android:layout_marginTop="20dp"
+        android:text="@string/trainButtonText"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/monsterRoster" />
+
+    <Button
+        android:id="@+id/trainButton2"
+        android:layout_width="125dip"
+        android:layout_height="75dip"
+        android:layout_marginTop="44dp"
+        android:gravity="center"
+        android:text="@string/trainButtonText"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/trainButton1" />
+
+    <Button
+        android:id="@+id/captureButton"
+        android:layout_width="150dp"
+        android:layout_height="75dip"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/captureButtonText"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/trainButton2" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="125dip"
+        android:layout_height="75dip"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/exitButtonText"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/captureButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

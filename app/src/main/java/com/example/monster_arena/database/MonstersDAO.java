@@ -1,6 +1,7 @@
 package com.example.monster_arena.database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -18,4 +19,8 @@ public interface MonstersDAO {
 
     @Query("Select * from " + MonsterArenaDatabase.MONSTERS_TABLE)
     List<Monsters> getMonsters();
+
+    @Delete
+    void deleteMonster(Monsters... monsters);
+
 }
