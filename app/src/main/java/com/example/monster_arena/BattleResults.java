@@ -38,8 +38,7 @@ public class BattleResults extends AppCompatActivity {
         binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), );
-                startActivity(intent);
+
             }
         });
     }
