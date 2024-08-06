@@ -18,17 +18,15 @@ public class BattleResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityBattleResultsBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_battle_results);
+        setContentView(binding.getRoot());
 
-        //TODO: Button will take you to the Battle Results activity / DOES NOT WORK
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
+                startActivity(BattleDetailsActivity.battleDetailsIntentFactory(getApplicationContext()));
             }
         });
 
-        //TODO: Button takes you to the Battle History activity / DOES NOT WORK
         binding.BattleHistoryButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
