@@ -19,6 +19,9 @@
             android:name=".BattleDetailsActivity"
             android:exported="false" />
         <activity
+            android:name=".BattleHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ManageUserActivity"
             android:exported="false" />
         <activity

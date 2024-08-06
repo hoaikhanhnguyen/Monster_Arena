@@ -24,4 +24,6 @@
     <string name="exit_in_batResults">Exit</string>
     <string name="battle_details_title">Battle Details</string>
     <string name="return_battle_details">Return</string>
+    <string name="return_battle_history">Return</string>
+    <string name="battle_history_title">Battle History</string>
 </resources>
