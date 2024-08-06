@@ -70,6 +70,17 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
                 dao.insert(admin);
                 User testUser1 = new User("testUser", "testUser");
                 dao.insert(testUser1);
+
+            });
+            databaseWriteExecutor.execute(() -> {
+                MonstersDAO dao = INSTANCE.monstersDAO();
+                dao.deleteAll();
+                Monsters monster = new Monsters("Squirtail", "Water type monster", 1, 1, 10.0, "Water", 1,1,1,1.0);
+                dao.insert(monster);
+                monster = new Monsters("Charlizard", "Fire type monster", 1, 1, 10.0, "Water", 1,1,1,1.0);
+                dao.insert(monster);
+                monster = new Monsters("Bulbguy", "Grass type monster", 1, 1, 10.0, "Water", 1,1,1,1.0);
+                dao.insert(monster);
             });
         }
     };

@@ -33,7 +33,7 @@ public class ManageUserActivity extends AppCompatActivity implements User_recycl
         binding = ActivityManageUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = MonsterArenaRepository.getRepository(getApplication());
-        assert repository != null;
+        //assert repository != null;
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_manage_user);
