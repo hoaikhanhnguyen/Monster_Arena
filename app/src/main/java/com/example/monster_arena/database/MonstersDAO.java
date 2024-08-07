@@ -34,4 +34,8 @@ public interface MonstersDAO {
     @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE name == :name")
     Monsters getMonsterByName(String name);
 
+
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.monster_arena.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
@@ -58,7 +59,6 @@ public class Monsters {
         }
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,6 +70,16 @@ public class Monsters {
     @Override
     public int hashCode() {
         return Objects.hash(name, description, user_id, level, next_level, type, attack, defense, agility, experience);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return description + '\n' +
+                "level: " + level + "\n" +
+                "experience: " + experience + "\n" +
+                "attack: " + attack + "\n" +
+                "defense: " + defense;
     }
 
     public int getId() {
@@ -159,6 +169,5 @@ public class Monsters {
     public void setExperience(double experience) {
         this.experience = experience;
     }
-
 
 }
