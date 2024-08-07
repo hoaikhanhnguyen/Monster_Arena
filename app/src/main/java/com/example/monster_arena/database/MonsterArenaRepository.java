@@ -154,5 +154,19 @@ public class MonsterArenaRepository {
         });
     }
 
+    public void insertNewArena(Arena arena) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            arenaDAO.insert(arena);
+        });
+    }
+    public void deleteArenaById(int id) {
+        MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
+            arenaDAO.deleteArenaById(id);
+        });
+
+
+    }
+
+
 
 }
