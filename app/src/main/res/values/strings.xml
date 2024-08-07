@@ -36,4 +36,6 @@
     <string name="monster_roster_title">Monster Roster</string>
     <string name="captureButtonText">Capture</string>
     <string name="exitButtonText">Exit</string>
+    <string name="monster_info">Monster Info</string>
+    <string name="monster_name">Monster Name</string>
 </resources>

@@ -1,9 +1,11 @@
 package com.example.monster_arena;
 
+import java.util.Random;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -21,8 +23,11 @@ import java.util.List;
 
 public class MonstersActivity extends AppCompatActivity implements Monster_RecyclerViewInterface {
 
+    private static final int MAX_RAND = 10; //max value for randomly generated numbers
+    private static final int MIN_RAND = 1; //min value for randomly generated numbers
     private ActivityMonstersBinding binding;
     private MonsterArenaRepository repository;
+    private Monsters monster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +37,18 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         setContentView(binding.getRoot());
 
         repository = MonsterArenaRepository.getRepository(getApplication());
-        //assert  repository != null;
-
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_monsters);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.monsters), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        final TextView monsterInfoView = findViewById(R.id.textViewMonsterInfo);
+        //monsterInfoView.setText(monster.toString());
+
+        //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.textViewMonsterInfo), (v, insets) -> {
+        //    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        //    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+        //    return insets;
+        //});
 
         getRoomData();
    }
@@ -93,4 +100,10 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         Toast.makeText(this, String.format("%s was deleted", monsterName), Toast.LENGTH_LONG).show();
         startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), monster.getId()));
     }
+
+    private void createMonster(){
+        int rand = new Random().nextInt(MAX_RAND);
+
+    }
+
 }
