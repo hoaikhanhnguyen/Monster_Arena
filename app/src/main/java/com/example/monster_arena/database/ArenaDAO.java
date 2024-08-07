@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 
 import com.example.monster_arena.database.entities.Arena;
@@ -18,4 +19,8 @@ public interface ArenaDAO {
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.ARENA_TABLE)
     List<Arena> getAllArenas();
+
+    @Query("DELETE FROM " + MonsterArenaDatabase.ARENA_TABLE + " WHERE id = :arenaId")
+    void deleteArenaById(int arenaId);
+
 }
