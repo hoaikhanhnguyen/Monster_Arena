@@ -34,4 +34,13 @@ public interface MonstersDAO {
     @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE name == :name")
     Monsters getMonsterByName(String name);
 
+
+    @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE user_id == user_id")
+    LiveData<Monsters> getMonsterByUserId(Integer  user_id);
+
+
+    @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE type == type")
+    LiveData<Monsters> getMonsterByType(String type);
+
+
 }
