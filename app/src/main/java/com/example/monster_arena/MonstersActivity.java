@@ -16,7 +16,6 @@ import com.example.monster_arena.databinding.ActivityMonstersBinding;
 import com.example.monster_arena.database.MonsterArenaRepository;
 import java.util.List;
 
-
 public class MonstersActivity extends AppCompatActivity implements Monster_RecyclerViewInterface {
 
     private static final int MAX_RAND = 10; //max value for randomly generated numbers
@@ -88,7 +87,5 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
 
     private void createMonster(){
         int rand = new Random().nextInt(MAX_RAND);
-
     }
-
 }
