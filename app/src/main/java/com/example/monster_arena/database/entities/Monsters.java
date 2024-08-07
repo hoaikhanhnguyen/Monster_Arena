@@ -59,7 +59,6 @@ public class Monsters {
         }
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,8 +76,10 @@ public class Monsters {
     @Override
     public String toString() {
         return description + '\n' +
-                "level=" + level + "\n" +
-                "experience=" + experience;
+                "level: " + level + "\n" +
+                "experience: " + experience + "\n" +
+                "attack: " + attack + "\n" +
+                "defense: " + defense;
     }
 
     public int getId() {

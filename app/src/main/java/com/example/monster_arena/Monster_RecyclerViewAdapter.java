@@ -1,6 +1,7 @@
 package com.example.monster_arena;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +32,16 @@ public class Monster_RecyclerViewAdapter extends RecyclerView.Adapter<Monster_Re
         return new MyViewHolder(view, monsterRecyclerViewInterface);
     }
 
-    //@Override
+    @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.monsterName.setText(monsters.get(position).getName());
         Monsters monster = monsters.get(position);
         holder.monsterInfo.setText(monster.toString());
+        if(monster.getType().equalsIgnoreCase("water")){
+            holder.imageView.setImageResource(R.drawable.water_type);
+        } else if(monster.getType().equalsIgnoreCase("fire")){
+            holder.imageView.setImageResource(R.drawable.fire_type);
+        } else{ holder.imageView.setImageResource(R.drawable.grass_type); }
     }
 
     @Override
@@ -50,11 +56,9 @@ public class Monster_RecyclerViewAdapter extends RecyclerView.Adapter<Monster_Re
         TextView monsterInfo;
         public MyViewHolder(@NonNull View itemView, Monster_RecyclerViewInterface monsterRecyclerViewInterface) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.imageView);
             monsterName = itemView.findViewById(R.id.textViewTitle); // sets name of monster in card view
             monsterInfo = itemView.findViewById(R.id.textViewMonsterInfo);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,7 +74,4 @@ public class Monster_RecyclerViewAdapter extends RecyclerView.Adapter<Monster_Re
             });
         }
     }
-
-
-
 }
