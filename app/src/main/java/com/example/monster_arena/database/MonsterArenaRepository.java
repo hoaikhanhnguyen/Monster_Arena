@@ -170,6 +170,10 @@ public class MonsterArenaRepository {
         return battleDAO.getRecentBattle();
     }
 
+    public LiveData<List<Battle>> getAllBattles(int userId) {
+        return battleDAO.getAllBattles(userId);
+    }
+
 
 
 }

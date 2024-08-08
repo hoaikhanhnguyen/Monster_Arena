@@ -11,9 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 
 import com.example.monster_arena.database.MonsterArenaRepository;
+import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.databinding.ActivityBattleHistoryBinding;
+
+import java.util.List;
 
 public class BattleHistoryActivity extends AppCompatActivity {
 
@@ -29,6 +33,17 @@ public class BattleHistoryActivity extends AppCompatActivity {
 
         repository = MonsterArenaRepository.getRepository(getApplication());
         userId = getIntent().getIntExtra("USER_ID", -1);
+
+        repository.getAllBattles(userId).observe(this, new Observer<List<Battle>>() {
+            @Override
+            public void onChanged(List<Battle> battles) {
+                if (battles != null && !battles.isEmpty()) {
+                    binding.battleHistoryList.setText(battles.toString());
+                } else {
+                    binding.battleHistoryList.setText("No battles found.");
+                }
+            }
+        });
 
         binding.returnButtonBattleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
