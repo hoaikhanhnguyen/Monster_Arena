@@ -37,13 +37,8 @@ public class BattleHistoryActivity extends AppCompatActivity {
         repository.getAllBattles(userId).observe(this, new Observer<List<Battle>>() {
             @Override
             public void onChanged(List<Battle> battles) {
-                binding.battleHistoryList.setText("");
                 if (battles != null && !battles.isEmpty()) {
-                    StringBuilder batHistory = new StringBuilder();
-                    for (Battle battle : battles) {
-                        batHistory.append(battles.toString());
-                    }
-                    binding.battleHistoryList.setText(batHistory.toString());
+                    binding.battleHistoryList.setText(battles.toString());
                 } else {
                     binding.battleHistoryList.setText("No battles found.");
                 }
