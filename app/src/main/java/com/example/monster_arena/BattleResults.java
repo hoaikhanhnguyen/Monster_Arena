@@ -41,7 +41,6 @@ public class BattleResults extends AppCompatActivity {
             }
         });
 
-        //TODO: Button takes you to the Welcome Users page / DOES NOT WORK
         binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
