@@ -6,12 +6,14 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.monster_arena.database.MonsterArenaRepository;
 import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityBattleResultsBinding;
 
 public class BattleResults extends AppCompatActivity {
 
     private ActivityBattleResultsBinding binding;
+    private MonsterArenaRepository repository;
     private User user;
 
     @Override
@@ -19,6 +21,8 @@ public class BattleResults extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityBattleResultsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        repository = MonsterArenaRepository.getRepository(getApplication());
 
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
