@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 int userId = loggedInUserId;
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
                 //TODO: How do i get the user's monster?
+                Monsters userMonster = randomMonster();
                 String battleResultValue = battleLogic(userMonster, randomMonster());
                 intent.putExtra("battleResult", battleResultValue);
                 startActivity(intent);
