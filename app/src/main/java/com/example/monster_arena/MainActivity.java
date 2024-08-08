@@ -20,6 +20,8 @@ import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityMainBinding;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.monster_arena.MAIN_ACTIVITY_USER_ID";
@@ -65,9 +67,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int userId = loggedInUserId;
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
-                randomMonster();
-                //TODO: battleLogic(the users monster, the monster chosen from random Monster);
-                battleLogic();
+                //TODO: How do i get the user's monster?
+                battleLogic(userMonster, randomMonster());
                 startActivity(intent);
             }
         });
@@ -192,8 +193,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO: finish this method
-    private int randomMonster() {
-        return -1;
+    private Monsters randomMonster() {
+        Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",10,4,3,5,1.0);
+        Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,3,5,4,1.0);
+        Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,4,5,3,1.0);
+
+        Monsters[] monsters = {monster1, monster2, monster3};
+
+        Random random = new Random();
+        int randomInt = random.nextInt(monsters.length);
+        return monsters[randomInt];
     }
 
     private void battleLogic(Monsters monster, Monsters enemy) {
