@@ -4,6 +4,7 @@ import java.util.Random;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -15,12 +16,14 @@ import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.databinding.ActivityMonstersBinding;
 import com.example.monster_arena.database.MonsterArenaRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MonstersActivity extends AppCompatActivity implements Monster_RecyclerViewInterface {
 
     private static final int MAX_RAND = 10; //max value for randomly generated numbers
     private ActivityMonstersBinding binding;
     private MonsterArenaRepository repository;
+    private int loggedInUser = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,12 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
 
         binding = ActivityMonstersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         repository = MonsterArenaRepository.getRepository(getApplication());
+
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.PREFERENCE_FILE_KEY),
+                Context.MODE_PRIVATE);
+        loggedInUser = sharedPreferences.getInt(getString(R.string.PREFERENCE_USERID_KEY), -1);
+
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_monsters);
@@ -40,13 +47,14 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
     private void getRoomData() {
         RecyclerView recyclerView = findViewById(R.id.monsterListViewTable);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<Monsters> monsters = repository.getAllMonsters();
-        Monster_RecyclerViewAdapter adapter = new Monster_RecyclerViewAdapter((Context) this,monsters, (Monster_RecyclerViewInterface) this);
-
+        List<Monsters> useMonsters = repository.getAllMonsters().stream()
+                .filter(monsters -> monsters.getUser_id() == loggedInUser)
+                .collect(Collectors.toList());
+        Monster_RecyclerViewAdapter adapter = new Monster_RecyclerViewAdapter((Context) this,useMonsters, (Monster_RecyclerViewInterface) this, loggedInUser);
         recyclerView.setAdapter(adapter);
     }
 
-    static Intent manageMonsterActivityIntentFactory(Context context){
+    static Intent manageMonsterActivityIntentFactory(Context context, int loggedInUser){
         return new Intent(context, MonstersActivity.class);
     }
 
@@ -84,6 +92,7 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         Toast.makeText(this, String.format("%s was deleted", monsterName), Toast.LENGTH_LONG).show();
         startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), monster.getId()));
     }
+
 
     private void createMonster(){
         int rand = new Random().nextInt(MAX_RAND);
