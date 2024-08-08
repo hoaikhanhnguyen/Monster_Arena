@@ -223,13 +223,13 @@ public class MainActivity extends AppCompatActivity {
             first.attack(second);
             if (second.getHp() <= 0) {
                 first.addExp(10);
-                result.append("You won!! Your monster gained 10 exp.");
+                result.append("You won!! \nYour monster gained 10 exp.");
                 break;
             }
             second.attack(first);
             if (first.getHp() <= 0) {
                 first.addExp(2);
-                result.append("You lost!! Your monster gained 2 exp.");
+                result.append("You lost!! \nYour monster gained 2 exp.");
                 break;
             }
         }

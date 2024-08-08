@@ -34,6 +34,8 @@ public class BattleHistoryActivity extends AppCompatActivity {
         repository = MonsterArenaRepository.getRepository(getApplication());
         userId = getIntent().getIntExtra("USER_ID", -1);
 
+        String battleResult = getIntent().getStringExtra("battleResult");
+
         repository.getAllBattles(userId).observe(this, new Observer<List<Battle>>() {
             @Override
             public void onChanged(List<Battle> battles) {
@@ -48,7 +50,9 @@ public class BattleHistoryActivity extends AppCompatActivity {
         binding.returnButtonBattleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext(), userId));
+                Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("battleResult", battleResult);
+                startActivity(intent);
             }
         });
     }
