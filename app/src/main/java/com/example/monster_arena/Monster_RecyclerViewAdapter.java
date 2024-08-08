@@ -6,21 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.monster_arena.database.entities.Monsters;
+
 import java.util.List;
 
 public class Monster_RecyclerViewAdapter extends RecyclerView.Adapter<Monster_RecyclerViewAdapter.MyViewHolder> {
     private final Monster_RecyclerViewInterface monsterRecyclerViewInterface;
-
+    private final int loggedInUser;
     Context context;
     List<Monsters> monsters;
 
-    public Monster_RecyclerViewAdapter(Context context, List<Monsters> monsters, Monster_RecyclerViewInterface monsterRecyclerViewInterface) {
+    public Monster_RecyclerViewAdapter(Context context, List<Monsters> monsters, Monster_RecyclerViewInterface monsterRecyclerViewInterface, int loggedInUser) {
         this.context = context;
         this.monsters = monsters;
         this.monsterRecyclerViewInterface = monsterRecyclerViewInterface;
+        this.loggedInUser = loggedInUser;
     }
 
     @NonNull
@@ -36,11 +40,16 @@ public class Monster_RecyclerViewAdapter extends RecyclerView.Adapter<Monster_Re
         holder.monsterName.setText(monsters.get(position).getName());
         Monsters monster = monsters.get(position);
         holder.monsterInfo.setText(monster.toString());
-        if(monster.getType().equalsIgnoreCase("water")){
-            holder.imageView.setImageResource(R.drawable.water_type);
-        } else if(monster.getType().equalsIgnoreCase("fire")){
-            holder.imageView.setImageResource(R.drawable.fire_type);
-        } else{ holder.imageView.setImageResource(R.drawable.grass_type); }
+
+        if (monster.getUser_id() == loggedInUser) {
+            if (monster.getType().equalsIgnoreCase("water")) {
+                holder.imageView.setImageResource(R.drawable.water_type);
+            } else if (monster.getType().equalsIgnoreCase("fire")) {
+                holder.imageView.setImageResource(R.drawable.fire_type);
+            } else {
+                holder.imageView.setImageResource(R.drawable.grass_type);
+            }
+            }
     }
 
     @Override
@@ -53,6 +62,7 @@ public class Monster_RecyclerViewAdapter extends RecyclerView.Adapter<Monster_Re
         ImageView imageView;
         TextView monsterName;
         TextView monsterInfo;
+
         public MyViewHolder(@NonNull View itemView, Monster_RecyclerViewInterface monsterRecyclerViewInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
