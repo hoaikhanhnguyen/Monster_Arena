@@ -26,7 +26,6 @@ public class BattleResults extends AppCompatActivity {
         repository = MonsterArenaRepository.getRepository(getApplication());
 
         userId = getIntent().getIntExtra("USER_ID", -1);
-        Log.d("Results", "ID = " + userId);
 
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override

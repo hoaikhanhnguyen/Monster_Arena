@@ -29,7 +29,6 @@ public class BattleHistoryActivity extends AppCompatActivity {
 
         repository = MonsterArenaRepository.getRepository(getApplication());
         userId = getIntent().getIntExtra("USER_ID", -1);
-        Log.d("History", "ID = " + userId);
 
         binding.returnButtonBattleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
