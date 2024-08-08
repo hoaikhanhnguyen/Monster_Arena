@@ -2,6 +2,7 @@ package com.example.monster_arena;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,7 @@ public class BattleResults extends AppCompatActivity {
 
     private ActivityBattleResultsBinding binding;
     private MonsterArenaRepository repository;
-    private User user;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +25,20 @@ public class BattleResults extends AppCompatActivity {
 
         repository = MonsterArenaRepository.getRepository(getApplication());
 
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        Log.d("Results", "ID = " + userId);
+
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleDetailsActivity.battleDetailsIntentFactory(getApplicationContext()));
+                startActivity(BattleDetailsActivity.battleDetailsIntentFactory(getApplicationContext(), userId));
             }
         });
 
         binding.BattleHistoryButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleHistoryActivity.battleHistoryIntentFactory(getApplicationContext()));
+                startActivity(BattleHistoryActivity.battleHistoryIntentFactory(getApplicationContext(), userId));
             }
         });
 
@@ -42,12 +46,14 @@ public class BattleResults extends AppCompatActivity {
         binding.ExitButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), userId));
             }
         });
     }
 
-    public static Intent battleResultsIntentFactory(Context context) {
-        return new Intent(context, BattleResults.class);
+    public static Intent battleResultsIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, BattleResults.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 }

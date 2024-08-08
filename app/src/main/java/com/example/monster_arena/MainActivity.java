@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         binding.battleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
+                int userId = loggedInUserId;
+                Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
+                startActivity(intent);
             }
         });
         binding.monsterButton.setOnClickListener(new View.OnClickListener() {
