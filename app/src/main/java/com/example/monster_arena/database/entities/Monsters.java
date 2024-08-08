@@ -179,4 +179,9 @@ public class Monsters {
     public void setHp(int hp) {
         this.hp = hp;
     }
+
+    public void attack(Monsters enemy) {
+        int newHp = enemy.getHp() - this.attack;
+        enemy.setHp(newHp);
+    }
 }
