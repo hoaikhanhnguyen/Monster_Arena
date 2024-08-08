@@ -27,6 +27,9 @@ public class BattleResults extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
+        String battleResult = getIntent().getStringExtra("battleResult");
+        binding.ExpResults.setText(battleResult);
+
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

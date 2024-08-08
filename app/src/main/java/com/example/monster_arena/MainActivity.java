@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 int userId = loggedInUserId;
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
                 //TODO: How do i get the user's monster?
-                battleLogic(userMonster, randomMonster());
+                String battleResultValue = battleLogic(userMonster, randomMonster());
+                intent.putExtra("battleResult", battleResultValue);
                 startActivity(intent);
             }
         });
@@ -192,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    //TODO: finish this method
     private Monsters randomMonster() {
         Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",10,4,3,5,1.0);
         Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,3,5,4,1.0);
@@ -205,21 +205,26 @@ public class MainActivity extends AppCompatActivity {
         return monsters[randomInt];
     }
 
-    private void battleLogic(Monsters monster, Monsters enemy) {
+    private String battleLogic(Monsters monster, Monsters enemy) {
         Monsters first = monster.getAgility() > enemy.getAgility() ? monster : enemy;
         Monsters second = monster.getAgility() > enemy.getAgility() ? enemy : monster;
+
+        StringBuilder result = new StringBuilder();
 
         while (monster.getHp() > 0 && enemy.getHp() > 0) {
             first.attack(second);
             if (second.getHp() <= 0) {
                 first.addExp(10);
-                //output "you won! gained 10 exp" to battle results screen.
+                result.append("You won!! Your monster gained 10 exp.");
+                break;
             }
             second.attack(first);
             if (first.getHp() <= 0) {
                 first.addExp(2);
-                //output "you lost! gained 5 exp to battle results screen."
+                result.append("You lost!! Your monster gained 2 exp.");
+                break;
             }
         }
+        return result.toString();
     }
 }
