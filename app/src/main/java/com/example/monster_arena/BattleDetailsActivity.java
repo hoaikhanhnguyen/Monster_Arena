@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.monster_arena.database.MonsterArenaRepository;
+import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.databinding.ActivityBattleDetailsBinding;
 
 public class BattleDetailsActivity extends AppCompatActivity {
@@ -22,6 +24,16 @@ public class BattleDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         repository = MonsterArenaRepository.getRepository(getApplication());
+
+        assert repository != null;
+        repository.getRecentBattle().observe(this, new Observer<Battle>() {
+            @Override
+            public void onChanged(Battle battle) {
+                if (battle != null) {
+                    binding.mostRecentBattleDetails.setText(battle.toString());
+                }
+            }
+        });
 
         binding.returnButtonBatDetails.setOnClickListener(new View.OnClickListener() {
             @Override
