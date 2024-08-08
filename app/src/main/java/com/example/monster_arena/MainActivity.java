@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int userId = loggedInUserId;
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
+                battleLogic();
                 startActivity(intent);
             }
         });
@@ -185,5 +186,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
+    }
+
+    private void battleLogic() {
+        //if monster agi > opponent agi
+            //monster attacks first
+        //else
+            //opponent attacks first
+
+        //if monsterAtk - opponentDef < 0
+            //monsterDmg = 0
+        //else
+            //monsterDmg = monsterAtk - opponentDef
     }
 }
