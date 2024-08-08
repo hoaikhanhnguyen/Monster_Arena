@@ -203,12 +203,12 @@ public class MainActivity extends AppCompatActivity {
         while (monster.getHp() > 0 && enemy.getHp() > 0) {
             first.attack(second);
             if (second.getHp() <= 0) {
-                //gain 10.0 xp (double)
+                first.addExp(10);
                 //output "you won! gained 10 exp" to battle results screen.
             }
             second.attack(first);
             if (first.getHp() <= 0) {
-                //gain 5.0 xp
+                first.addExp(2);
                 //output "you lost! gained 5 exp to battle results screen."
             }
         }

@@ -189,4 +189,8 @@ public class Monsters {
         int newHp = enemy.getHp() - damage;
         enemy.setHp(newHp);
     }
+
+    public void addExp(int exp) {
+        this.experience += exp;
+    }
 }
