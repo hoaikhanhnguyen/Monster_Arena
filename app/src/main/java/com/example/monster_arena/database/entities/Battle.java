@@ -1,5 +1,6 @@
 package com.example.monster_arena.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,6 +13,86 @@ public class Battle {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private String monster_name;
+    private String opponent_name;
+    private String user_name;
+    private String arena_name;
+
+    public Battle(String monster_name, String opponent_name, String user_name, String arena_name) {
+        this.monster_name = monster_name;
+        this.opponent_name = opponent_name;
+        this.user_name = user_name;
+        this.arena_name = arena_name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMonster_name() {
+        return monster_name;
+    }
+
+    public void setMonster_name(String monster_name) {
+        this.monster_name = monster_name;
+    }
+
+    public String getOpponent_name() {
+        return opponent_name;
+    }
+
+    public void setOpponent_name(String opponent_name) {
+        this.opponent_name = opponent_name;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getArena_name() {
+        return arena_name;
+    }
+
+    public void setArena_name(String arena_name) {
+        this.arena_name = arena_name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Battle battle = (Battle) o;
+        return id == battle.id && Objects.equals(monster_name, battle.monster_name) && Objects.equals(opponent_name, battle.opponent_name) && Objects.equals(user_name, battle.user_name) && Objects.equals(arena_name, battle.arena_name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, monster_name, opponent_name, user_name, arena_name);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        setId(0); //TODO:Figure out how to take highest value in database and increment by 1
+        return "Battle ID: " + id
+                + "\nUsername: " + user_name
+                + "\nMonster: " + monster_name
+                + "\nOpponent: " + opponent_name
+                + "\nArena: " + arena_name + "\n" +
+                "--------------------------------";
+    }
+}
+
+
+    /*
     private int monster_id;
     private int opponent_id;
     private int user_id;
@@ -88,3 +169,4 @@ public class Battle {
                 "--------------------------------";
     }
 }
+     */
