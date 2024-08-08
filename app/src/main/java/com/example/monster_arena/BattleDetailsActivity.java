@@ -16,6 +16,7 @@ public class BattleDetailsActivity extends AppCompatActivity {
 
     private ActivityBattleDetailsBinding binding;
     private MonsterArenaRepository repository;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,8 @@ public class BattleDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         repository = MonsterArenaRepository.getRepository(getApplication());
+
+        userId = getIntent().getIntExtra("USER_ID", -1);
 
         assert repository != null;
         repository.getRecentBattle().observe(this, new Observer<Battle>() {
@@ -38,13 +41,14 @@ public class BattleDetailsActivity extends AppCompatActivity {
         binding.returnButtonBatDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
+                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext(), userId));
             }
         });
     }
 
-    public static Intent battleDetailsIntentFactory(Context context) {
+    public static Intent battleDetailsIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, BattleDetailsActivity.class);
+        intent.putExtra("USER_ID", userId);
         return intent;
     }
 }
