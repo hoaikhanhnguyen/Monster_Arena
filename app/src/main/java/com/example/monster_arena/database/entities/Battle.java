@@ -79,6 +79,7 @@ public class Battle {
 
     @Override
     public String toString() {
+        setId(0); //TODO:Figure out how to take highest value in database and increment by 1
         return "Battle ID: " + id
                 + "\nUser ID: " + user_id
                 + "\nMonster ID: " + monster_id

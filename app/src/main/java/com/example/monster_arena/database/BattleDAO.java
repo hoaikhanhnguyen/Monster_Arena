@@ -20,4 +20,7 @@ public interface BattleDAO {
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.BATTLE_TABLE + " ORDER BY id DESC LIMIT 1")
     LiveData<Battle> getRecentBattle();
+
+    @Query("DELETE from " + MonsterArenaDatabase.BATTLE_TABLE)
+    void deleteAll();
 }
