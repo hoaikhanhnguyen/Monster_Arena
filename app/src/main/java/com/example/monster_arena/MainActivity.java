@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.monster_arena.database.MonsterArenaRepository;
+import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityMainBinding;
@@ -66,10 +67,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int userId = loggedInUserId;
+                String userName = user.getUserName();
+                Monsters userMonster = randomMonster(); //TODO: How do i get the user's monster?
+                Monsters enemyMonster = randomMonster();
+                String battleResultValue = battleLogic(userMonster, enemyMonster);
+                String arenaName = "arena1"; //TODO: Needs to be updated.
+
+                Battle battle = new Battle(userMonster.getName(), enemyMonster.getName(), userId, userName, arenaName);
+                repository.insertBattle(battle);
+
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
-                //TODO: How do i get the user's monster?
-                Monsters userMonster = randomMonster();
-                String battleResultValue = battleLogic(userMonster, randomMonster());
                 intent.putExtra("battleResult", battleResultValue);
                 startActivity(intent);
             }
