@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int userId = loggedInUserId;
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
+                randomMonster();
+                //TODO: battleLogic(the users monster, the monster chosen from random Monster);
                 battleLogic();
                 startActivity(intent);
             }
@@ -189,13 +191,26 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
+    //TODO: finish this method
+    private int randomMonster() {
+        return -1;
+    }
+
     private void battleLogic(Monsters monster, Monsters enemy) {
         Monsters first = monster.getAgility() > enemy.getAgility() ? monster : enemy;
         Monsters second = monster.getAgility() > enemy.getAgility() ? enemy : monster;
 
-        //if monsterAtk - opponentDef < 0
-            //monsterDmg = 0
-        //else
-            //monsterDmg = monsterAtk - opponentDef
+        while (monster.getHp() > 0 && enemy.getHp() > 0) {
+            first.attack(second);
+            if (second.getHp() <= 0) {
+                //gain 10.0 xp (double)
+                //output "you won! gained 10 exp" to battle results screen.
+            }
+            second.attack(first);
+            if (first.getHp() <= 0) {
+                //gain 5.0 xp
+                //output "you lost! gained 5 exp to battle results screen."
+            }
+        }
     }
 }
