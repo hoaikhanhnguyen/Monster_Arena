@@ -21,8 +21,8 @@ public interface BattleDAO {
     @Query("SELECT * FROM " + MonsterArenaDatabase.BATTLE_TABLE + " ORDER BY id DESC LIMIT 1")
     LiveData<Battle> getRecentBattle();
 
-    //@Query("SELECT * FROM " + MonsterArenaDatabase.BATTLE_TABLE + " WHERE user_id = :loggedInUserId ORDER BY id")
-    //LiveData<Battle> getAllBattles(int loggedInUserId);
+    @Query("SELECT * FROM " + MonsterArenaDatabase.BATTLE_TABLE + " WHERE user_id = :loggedInUserId ORDER BY id")
+    LiveData<List<Battle>> getAllBattles(int loggedInUserId);
 
     @Query("DELETE from " + MonsterArenaDatabase.BATTLE_TABLE)
     void deleteAll();

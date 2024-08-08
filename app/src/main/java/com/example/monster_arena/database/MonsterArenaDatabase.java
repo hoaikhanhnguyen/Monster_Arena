@@ -90,9 +90,15 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 BattleDAO dao = INSTANCE.battleDAO();
                 dao.deleteAll();
-                Battle battle = new Battle("monster","enemy","admin","fire");
+                Battle battle = new Battle("monster","enemy",1,"admin", "fire");
                 dao.insert(battle);
-                battle = new Battle("monster1","enemy1","testUser","water");
+                battle = new Battle("monsterman","enemyguy",1,"admin", "grass");
+                dao.insert(battle);
+                battle = new Battle("monster2","enemy2",3,"admin2", "water");
+                dao.insert(battle);
+                battle = new Battle("monster1","enemy1",2,"testUser", "water");
+                dao.insert(battle);
+                battle = new Battle("monster3","enemy3",2,"testUser", "grass");
                 dao.insert(battle);
             });
         }
