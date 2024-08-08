@@ -182,8 +182,8 @@ public class Monsters {
 
     public void attack(Monsters enemy) {
         int damage = this.getAttack() - enemy.getDefense();
-        if (damage < 0) {
-            damage = 0;
+        if (damage <= 1) {
+            damage = 1;
         }
 
         int newHp = enemy.getHp() - damage;
