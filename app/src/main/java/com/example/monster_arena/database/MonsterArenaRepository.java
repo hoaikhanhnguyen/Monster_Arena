@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 
+import com.example.monster_arena.BattleResults;
 import com.example.monster_arena.MonstersActivity;
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
@@ -163,8 +164,10 @@ public class MonsterArenaRepository {
         MonsterArenaDatabase.databaseWriteExecutor.execute(() -> {
             arenaDAO.deleteArenaById(id);
         });
+    }
 
-
+    public LiveData<Battle> getRecentBattle() {
+        return battleDAO.getRecentBattle();
     }
 
 
