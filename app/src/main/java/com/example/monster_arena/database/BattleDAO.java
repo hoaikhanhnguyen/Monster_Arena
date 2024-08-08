@@ -1,5 +1,6 @@
 package com.example.monster_arena.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -16,4 +17,10 @@ public interface BattleDAO {
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.BATTLE_TABLE + " ORDER BY id")
     List<Battle> getBattles();
+
+    @Query("SELECT * FROM " + MonsterArenaDatabase.BATTLE_TABLE + " ORDER BY id DESC LIMIT 1")
+    LiveData<Battle> getRecentBattle();
+
+    @Query("DELETE from " + MonsterArenaDatabase.BATTLE_TABLE)
+    void deleteAll();
 }

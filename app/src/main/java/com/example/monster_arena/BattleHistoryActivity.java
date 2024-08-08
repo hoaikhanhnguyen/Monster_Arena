@@ -11,11 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.monster_arena.database.MonsterArenaRepository;
 import com.example.monster_arena.databinding.ActivityBattleHistoryBinding;
 
 public class BattleHistoryActivity extends AppCompatActivity {
 
     private ActivityBattleHistoryBinding binding;
+    private MonsterArenaRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,12 @@ public class BattleHistoryActivity extends AppCompatActivity {
         binding = ActivityBattleHistoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        repository = MonsterArenaRepository.getRepository(getApplication());
 
-        //TODO: Button returns user to the Battle Results page.
         binding.returnButtonBattleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext()));
             }
         });
     }
