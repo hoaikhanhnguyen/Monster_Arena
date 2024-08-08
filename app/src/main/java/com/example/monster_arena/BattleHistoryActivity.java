@@ -27,7 +27,6 @@ public class BattleHistoryActivity extends AppCompatActivity {
 
         repository = MonsterArenaRepository.getRepository(getApplication());
 
-        //TODO: Button returns user to the Battle Results page.
         binding.returnButtonBattleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

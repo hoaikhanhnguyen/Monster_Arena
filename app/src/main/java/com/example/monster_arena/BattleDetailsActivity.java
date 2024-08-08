@@ -23,7 +23,6 @@ public class BattleDetailsActivity extends AppCompatActivity {
 
         repository = MonsterArenaRepository.getRepository(getApplication());
 
-        //TODO: Return to battle results activity
         binding.returnButtonBatDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
