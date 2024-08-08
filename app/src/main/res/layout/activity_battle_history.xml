@@ -18,26 +18,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/battleHistoryList"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="30dp"
-        android:text="list of users battles here"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@id/returnButtonBattleHistory"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/battleHistoryTitle" />
+        app:layout_constraintTop_toBottomOf="@id/battleHistoryTitle"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/battleHistoryList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:padding="16dp"
+            android:textSize="20sp"
+            android:text="list of users battles here" />
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/returnButtonBattleHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/return_battle_history"
+        android:layout_marginBottom="50dp"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/battleHistoryList" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
