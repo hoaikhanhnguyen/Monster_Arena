@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.monster_arena.database.MonsterArenaRepository;
+import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityMainBinding;
 
@@ -188,11 +189,9 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    private void battleLogic() {
-        //if monster agi > opponent agi
-            //monster attacks first
-        //else
-            //opponent attacks first
+    private void battleLogic(Monsters monster, Monsters enemy) {
+        Monsters first = monster.getAgility() > enemy.getAgility() ? monster : enemy;
+        Monsters second = monster.getAgility() > enemy.getAgility() ? enemy : monster;
 
         //if monsterAtk - opponentDef < 0
             //monsterDmg = 0
