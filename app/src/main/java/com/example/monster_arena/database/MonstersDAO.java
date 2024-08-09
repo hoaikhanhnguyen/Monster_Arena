@@ -35,7 +35,7 @@ public interface MonstersDAO {
     Monsters getMonsterByName(String name);
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE id == :id ")
-    LiveData<Monsters> getMonsterById(int id);
+    Monsters getMonsterById(int id);
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE id == :id ")
     Monsters getMonsterNameById(int id);

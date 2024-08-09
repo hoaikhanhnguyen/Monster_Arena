@@ -56,13 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
         updateSharedPreference();
 
-//TODO: This is the code that causes null pointer
-       // int monsterById = getIntent().getIntExtra("Selected_Monster", -1);
-        //Monsters monsterSelectedName =  repository.getMonsterNameById(monsterById);
-        //selectedMonsterName = monsterSelectedName.getName();
-        //binding.selectedMonsterLabelTextView.setText(selectedMonsterName);
-
-
         binding.manageUsersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,13 +106,24 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String selectedArena = intent.getStringExtra("Arena Selected");
+        String selectedMonster = intent.getStringExtra("Selected Monster");
+        int monsterById = getIntent().getIntExtra("Selected_Monster", -1);
 
+        if(monsterById != -1){
+            Monsters monster =  repository.getMonsterById(monsterById);
+            selectedMonster = monster.getName();
+            binding.selectedMonsterLabelTextView.setText(monster.getName());
+        }else {
+            binding.selectedMonsterLabelTextView.setText("Please Select a Monster:");
+        }
         if (selectedArena != null && !selectedArena.isEmpty()) {
             // Update the TextView with the selected arena
             binding.selectedArenaLabelTextView.setText("Selected Arena: " + selectedArena);
         } else {
             binding.selectedArenaLabelTextView.setText("Please Select an Arena:");
         }
+
+
     }
 
 
