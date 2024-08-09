@@ -60,3 +60,4 @@ public class Arena {
         return Objects.hash(id, name, type);
     }
 }
+
