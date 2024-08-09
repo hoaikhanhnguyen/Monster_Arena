@@ -67,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.arenaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int userId = loggedInUserId;
+                Intent intent = ArenaTypes.arenaTypesIntentFactory(getApplicationContext(), userId);
+                startActivity(intent);
+            }
+        });
         binding.monsterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

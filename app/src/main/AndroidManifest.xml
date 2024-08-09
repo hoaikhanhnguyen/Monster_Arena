@@ -13,7 +13,13 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ArenaActivity"
+            android:name=".ArenaTypes"
+            android:exported="false" />
+        <activity
+            android:name=".ArenaHistory"
+            android:exported="false" />
+        <activity
+            android:name=".ArenaSelectionActivity"
             android:exported="false" />
         <activity
             android:name=".BattleResults"

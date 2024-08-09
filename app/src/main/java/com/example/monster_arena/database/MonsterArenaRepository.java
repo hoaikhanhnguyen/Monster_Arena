@@ -4,8 +4,6 @@ import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 
-import com.example.monster_arena.BattleResults;
-import com.example.monster_arena.MonstersActivity;
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.database.entities.Battle;
 import com.example.monster_arena.database.entities.MonsterArena;
@@ -174,6 +172,12 @@ public class MonsterArenaRepository {
         return battleDAO.getAllBattles(userId);
     }
 
+    public LiveData<List<Arena>> getAllArenas(int userId) {
+        return arenaDAO.getAllArenas();
+    }
 
 
+    public LiveData<List<Arena>> getAllArenas() {
+        return arenaDAO.getAllArenas();
+    }
 }
