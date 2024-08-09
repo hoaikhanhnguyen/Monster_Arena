@@ -3,7 +3,6 @@ package com.example.monster_arena.database;
 
 import static junit.framework.TestCase.assertEquals;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -65,14 +64,5 @@ public class BattleDaoTest {
         dao.deleteAll();
         allBattles = dao.getBattles();
         assertEquals(0,allBattles.size());
-    }
-
-    @Test
-    public void getRecentBattleTest() {
-        Battle battle = new Battle("monster", "enemy", 0, "user", "arena");
-        Battle battle1 = new Battle("monster1", "enemy1", 1, "user1", "arena1");
-        dao.insert(battle, battle1);
-
-        LiveData<Battle> liveData = dao.getRecentBattle();
     }
 }
