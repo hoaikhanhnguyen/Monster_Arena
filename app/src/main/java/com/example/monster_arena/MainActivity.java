@@ -202,10 +202,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Monsters randomMonster() {
-        Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",2,4,1,40,1.0);
-        Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,50,5,5,1.0);
-        Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,50,5,5,1.0);
-        Monsters monster4 = new Monsters("Arceus", "Unbeatable", 99, 99, 100.0, "Fire", 999, 99, 99, 99, 1.0);
+        Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",10,4,3,5,1.0);
+        Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,5,3,4,1.0);
+        Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,4,5,3,1.0);
+        Monsters monster4 = new Monsters("Arsus", "Unbeatable", 99, 99, 100.0, "Fire", 999, 99, 99, 99, 1.0);
 
         Monsters[] monsters = {monster1, monster2, monster3, monster4};
 
@@ -228,14 +228,24 @@ public class MainActivity extends AppCompatActivity {
 
         while (monster.getHp() > 0 && enemy.getHp() > 0) {
             first.attack(second);
-            if (second.getHp() <= 0) {
-                first.addExp(10);
+            if (enemy.getHp() <= 0) {
+                monster.addExp(10);
                 result.append("You won!! \nYour monster gained 10 exp.");
                 break;
             }
+            if (monster.getHp() <= 0) {
+                monster.addExp(2);
+                result.append("You lost!! \nYour monster gained 2 exp.");
+                break;
+            }
             second.attack(first);
-            if (first.getHp() <= 0) {
-                first.addExp(2);
+            if (enemy.getHp() <= 0) {
+                monster.addExp(10);
+                result.append("You won!! \nYour monster gained 10 exp.");
+                break;
+            }
+            if (monster.getHp() <= 0) {
+                monster.addExp(2);
                 result.append("You lost!! \nYour monster gained 2 exp.");
                 break;
             }
