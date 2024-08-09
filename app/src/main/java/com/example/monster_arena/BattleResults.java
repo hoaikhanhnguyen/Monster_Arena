@@ -27,17 +27,24 @@ public class BattleResults extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
+        String battleResult = getIntent().getStringExtra("battleResult");
+        binding.ExpResults.setText(battleResult);
+
         binding.BattleDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleDetailsActivity.battleDetailsIntentFactory(getApplicationContext(), userId));
+                Intent intent = BattleDetailsActivity.battleDetailsIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("battleResult", battleResult);
+                startActivity(intent);
             }
         });
 
         binding.BattleHistoryButtonInBatResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleHistoryActivity.battleHistoryIntentFactory(getApplicationContext(), userId));
+                Intent intent = BattleHistoryActivity.battleHistoryIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("battleResult", battleResult);
+                startActivity(intent);
             }
         });
 

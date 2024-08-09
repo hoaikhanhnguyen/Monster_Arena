@@ -28,6 +28,8 @@ public class BattleDetailsActivity extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
+        String battleResult = getIntent().getStringExtra("battleResult");
+
         assert repository != null;
         repository.getRecentBattle().observe(this, new Observer<Battle>() {
             @Override
@@ -41,7 +43,9 @@ public class BattleDetailsActivity extends AppCompatActivity {
         binding.returnButtonBatDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BattleResults.battleResultsIntentFactory(getApplicationContext(), userId));
+                Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("battleResult", battleResult);
+                startActivity(intent);
             }
         });
     }

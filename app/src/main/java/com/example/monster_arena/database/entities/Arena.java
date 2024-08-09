@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity(tableName = MonsterArenaDatabase.ARENA_TABLE)
 
-public class Arena {
+public class  Arena {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

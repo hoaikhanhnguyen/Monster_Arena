@@ -16,8 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.monster_arena.database.MonsterArenaRepository;
+import com.example.monster_arena.database.entities.Battle;
+import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.database.entities.User;
 import com.example.monster_arena.databinding.ActivityMainBinding;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +67,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int userId = loggedInUserId;
+                String userName = user.getUserName();
+                Monsters userMonster = randomMonster(); //TODO: How do i get the user's monster? Using a randomMonster for now.
+                Monsters enemyMonster = randomMonster();
+                String battleResultValue = battleLogic(userMonster, enemyMonster);
+                String arenaName = "arena1"; //TODO: Needs to be updated.
+
+                Battle battle = new Battle(userMonster.getName(), enemyMonster.getName(), userId, userName, arenaName);
+                repository.insertBattle(battle);
+
                 Intent intent = BattleResults.battleResultsIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("battleResult", battleResultValue);
                 startActivity(intent);
             }
         });
@@ -187,5 +201,57 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
+    }
+
+    private Monsters randomMonster() {
+        Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",10,4,3,5,1.0);
+        Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,5,3,4,1.0);
+        Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,4,5,3,1.0);
+        Monsters monster4 = new Monsters("Arsus", "Unbeatable", 99, 99, 100.0, "Fire", 999, 99, 99, 99, 1.0);
+
+        Monsters[] monsters = {monster1, monster2, monster3, monster4};
+
+        Random random = new Random();
+        int randomInt = random.nextInt(monsters.length);
+        return monsters[randomInt];
+    }
+
+    private String battleLogic(Monsters monster, Monsters enemy) {
+        Monsters first, second;
+        if (monster.getAgility() > enemy.getAgility()) {
+            first = monster;
+            second = enemy;
+        } else {
+            first = enemy;
+            second = monster;
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        while (monster.getHp() > 0 && enemy.getHp() > 0) {
+            first.attack(second);
+            if (enemy.getHp() <= 0) {
+                monster.addExp(10);
+                result.append("You won!! \nYour monster gained 10 exp.");
+                break;
+            }
+            if (monster.getHp() <= 0) {
+                monster.addExp(2);
+                result.append("You lost!! \nYour monster gained 2 exp.");
+                break;
+            }
+            second.attack(first);
+            if (enemy.getHp() <= 0) {
+                monster.addExp(10);
+                result.append("You won!! \nYour monster gained 10 exp.");
+                break;
+            }
+            if (monster.getHp() <= 0) {
+                monster.addExp(2);
+                result.append("You lost!! \nYour monster gained 2 exp.");
+                break;
+            }
+        }
+        return result.toString();
     }
 }

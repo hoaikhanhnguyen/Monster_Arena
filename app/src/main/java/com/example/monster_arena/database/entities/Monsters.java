@@ -25,14 +25,16 @@ public class Monsters {
     private Integer defense;
     private Integer agility;
     private double experience;
+    private int hp;
     //private LocalDateTime created_at;
 
-    public Monsters(String name, String description, Integer user_id, Integer level, double next_level, String type, Integer attack, Integer defense, Integer agility, double experience) {
+    public Monsters(String name, String description, Integer user_id, Integer level, double next_level, String type, int hp, Integer attack, Integer defense, Integer agility, double experience) {
         this.name = name;
         this.description = description;
         this.user_id = user_id;
         this.level = level;
         this.next_level = next_level;
+        this.hp = hp;
         this.type = type;
         this.attack = attack;
         this.defense = defense;
@@ -64,12 +66,12 @@ public class Monsters {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Monsters monsters = (Monsters) o;
-        return Double.compare(next_level, monsters.next_level) == 0 && Double.compare(experience, monsters.experience) == 0 && Objects.equals(name, monsters.name) && Objects.equals(description, monsters.description) && Objects.equals(user_id, monsters.user_id) && Objects.equals(level, monsters.level) && Objects.equals(type, monsters.type) && Objects.equals(attack, monsters.attack) && Objects.equals(defense, monsters.defense) && Objects.equals(agility, monsters.agility);
+        return id == monsters.id && Double.compare(next_level, monsters.next_level) == 0 && Double.compare(experience, monsters.experience) == 0 && hp == monsters.hp && Objects.equals(name, monsters.name) && Objects.equals(description, monsters.description) && Objects.equals(user_id, monsters.user_id) && Objects.equals(level, monsters.level) && Objects.equals(type, monsters.type) && Objects.equals(attack, monsters.attack) && Objects.equals(defense, monsters.defense) && Objects.equals(agility, monsters.agility);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, user_id, level, next_level, type, attack, defense, agility, experience);
+        return Objects.hash(id, name, description, user_id, level, next_level, type, attack, defense, agility, experience, hp);
     }
 
     @NonNull
@@ -170,4 +172,25 @@ public class Monsters {
         this.experience = experience;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void attack(Monsters enemy) {
+        int damage = this.getAttack() - enemy.getDefense();
+        if (damage <= 1) {
+            damage = 1;
+        }
+
+        int newHp = enemy.getHp() - damage;
+        enemy.setHp(newHp);
+    }
+
+    public void addExp(int exp) {
+        this.experience += exp;
+    }
 }
