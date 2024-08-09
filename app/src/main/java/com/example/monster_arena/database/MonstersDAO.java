@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface MonstersDAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Monsters monsters);
 
     @Delete
@@ -33,9 +33,4 @@ public interface MonstersDAO {
 
     @Query("SELECT * FROM " + MonsterArenaDatabase.MONSTERS_TABLE + " WHERE name == :name")
     Monsters getMonsterByName(String name);
-
-
-
-
-
 }
