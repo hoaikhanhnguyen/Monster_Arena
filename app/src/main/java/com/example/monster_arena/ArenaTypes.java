@@ -3,6 +3,7 @@ package com.example.monster_arena;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,8 +27,34 @@ public class ArenaTypes extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
-        // Create Fire, Water, and Grass Arenas
         createDefaultArenas();
+        binding.fireArenaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("Arena Selected", "Fire Arena");
+                startActivity(intent);
+            }
+        });
+
+        binding.waterArenaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("Arena Selected", "Water Arena");
+                startActivity(intent);
+            }
+        });
+
+        binding.grassArenaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+                intent.putExtra("Arena Selected", "Grass Arena");
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void createDefaultArenas() {
