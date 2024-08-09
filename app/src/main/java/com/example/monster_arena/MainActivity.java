@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     static final String SHARED_PREFERENCE_USERID_KEY =" com.example.monster_arena.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE =" com.example.monster_arena.SHARED_PREFERENCE_USERID_VALUE";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.monster_arena.SHARED_INSTANCE_STATE_USERID_KEY";
-
+    String selectedMonsterName = "Selected: ";
     private static final int LOGGED_OUT = -1;
 
     private int loggedInUserId = -1;
@@ -55,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         updateSharedPreference();
+
+//TODO: This is the code that causes null pointer
+       // int monsterById = getIntent().getIntExtra("Selected_Monster", -1);
+        //Monsters monsterSelectedName =  repository.getMonsterNameById(monsterById);
+        //selectedMonsterName = monsterSelectedName.getName();
+        //binding.selectedMonsterLabelTextView.setText(selectedMonsterName);
+
 
         binding.manageUsersButton.setOnClickListener(new View.OnClickListener() {
             @Override

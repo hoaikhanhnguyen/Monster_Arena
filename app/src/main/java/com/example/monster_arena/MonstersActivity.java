@@ -1,5 +1,6 @@
 package com.example.monster_arena;
 
+import java.util.Locale;
 import java.util.Random;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,6 +25,7 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
     private ActivityMonstersBinding binding;
     private MonsterArenaRepository repository;
     private int loggedInUser = -1;
+    static int monsterId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,9 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
     }
 
     static Intent manageMonsterActivityIntentFactory(Context context, int loggedInUser){
-        return new Intent(context, MonstersActivity.class);
+                Intent intent = new Intent(context, MonstersActivity.class);
+                intent.putExtra("User_Id", loggedInUser);
+        return intent;
     }
 
     public void onItemClick(int position) {
@@ -75,13 +79,36 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
             }
         });
 
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+        alertBuilder.setNegativeButton("Select", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {selectMonster(position);
+            }
+        });
+
+        alertBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.dismiss();
             }
         });
+
         alertBuilder.create().show();
+
+    }
+
+    private void selectMonster(int position) {
+        List<Monsters> monsters = repository.getAllMonsters();
+        String monsterName = monsters.get(position).getName();
+        int userId = monsters.get(position).getUser_id();
+        Monsters monster = repository.getMonsterByName(monsterName);
+        monsterId = monsters.get(position).getId();
+        repository.getMonsterById(monster);
+        Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+        intent.putExtra("Selected_Monster",monsterId);
+        Toast.makeText(this, String.format(Locale.US,"%s was Selected, with id %d", monsterName,monsterId), Toast.LENGTH_LONG).show();
+        startActivity(intent);
+        //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUser));
     }
 
     private void deleteMonster(int position) {
@@ -90,7 +117,7 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         Monsters monster = repository.getMonsterByName(monsterName);
         repository.delete(monster);
         Toast.makeText(this, String.format("%s was deleted", monsterName), Toast.LENGTH_LONG).show();
-        startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), monster.getId()));
+        //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUser));
     }
 
 
