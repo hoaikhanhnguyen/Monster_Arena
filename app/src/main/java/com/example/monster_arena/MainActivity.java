@@ -68,10 +68,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int userId = loggedInUserId;
                 String userName = user.getUserName();
-                Monsters userMonster = randomMonster(); //TODO: How do i get the user's monster? Using a randomMonster for now.
+                Monsters userMonster = randomMonster();
                 Monsters enemyMonster = randomMonster();
                 String battleResultValue = battleLogic(userMonster, enemyMonster);
-                String arenaName = "arena1"; //TODO: Needs to be updated.
+                String arenaName = "Grass Arena";
 
                 Battle battle = new Battle(userMonster.getName(), enemyMonster.getName(), userId, userName, arenaName);
                 repository.insertBattle(battle);
