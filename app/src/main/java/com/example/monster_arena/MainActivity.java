@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int userId = loggedInUserId;
                 String userName = user.getUserName();
-                Monsters userMonster = randomMonster(); //TODO: How do i get the user's monster?
+                Monsters userMonster = randomMonster(); //TODO: How do i get the user's monster? Using a randomMonster for now.
                 Monsters enemyMonster = randomMonster();
                 String battleResultValue = battleLogic(userMonster, enemyMonster);
                 String arenaName = "arena1"; //TODO: Needs to be updated.
@@ -205,8 +205,9 @@ public class MainActivity extends AppCompatActivity {
         Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",2,4,1,40,1.0);
         Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,50,5,5,1.0);
         Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,50,5,5,1.0);
+        Monsters monster4 = new Monsters("Arceus", "Unbeatable", 99, 99, 100.0, "Fire", 999, 99, 99, 99, 1.0);
 
-        Monsters[] monsters = {monster1, monster2, monster3};
+        Monsters[] monsters = {monster1, monster2, monster3, monster4};
 
         Random random = new Random();
         int randomInt = random.nextInt(monsters.length);
