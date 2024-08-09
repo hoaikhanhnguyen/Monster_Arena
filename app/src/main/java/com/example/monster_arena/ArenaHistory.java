@@ -12,7 +12,6 @@ import com.example.monster_arena.database.MonsterArenaRepository;
 import com.example.monster_arena.database.entities.Arena;
 import com.example.monster_arena.databinding.ActivityArenaHistoryBinding;
 
-
 import java.util.List;
 
 public class ArenaHistory extends AppCompatActivity {
@@ -29,21 +28,23 @@ public class ArenaHistory extends AppCompatActivity {
         repository = MonsterArenaRepository.getRepository(getApplication());
         userId = getIntent().getIntExtra("USER_ID", -1);
 
-        repository.getAllArenas(userId).observe(this, new Observer<List<Arena>>() {
+        repository.getAllArenas().observe(this, new Observer<List<Arena>>() {
             @Override
             public void onChanged(List<Arena> arenas) {
                 if (arenas != null && !arenas.isEmpty()) {
-                    binding.arenaHistoryTextView.setText(arenas.toString());
-                } else {
-                    binding.arenaHistoryTextView.setText("No Arenas found.");
+
+                    Intent intent = ArenaHistory.arenaHistoryIntentFactory(getApplicationContext(), userId);
+                    startActivity(intent);                } else {
+                    binding.arenaListTextView.setText("No Arenas found.");
                 }
             }
         });
 
-        binding.returnButtonArenaHistory.setOnClickListener(new View.OnClickListener() {
+        binding.returnToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(ArenaTypes.arenaTypesIntentFactory(getApplicationContext(), userId));
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+                startActivity(intent);
             }
         });
     }
@@ -54,4 +55,3 @@ public class ArenaHistory extends AppCompatActivity {
         return intent;
     }
 }
-

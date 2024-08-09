@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String selectedArena = intent.getStringExtra("Arena Selected");
+        String selectedMonster = intent.getStringExtra("Selected Monster");
 
         if (selectedArena != null && !selectedArena.isEmpty()) {
             // Update the TextView with the selected arena
@@ -113,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             binding.selectedArenaLabelTextView.setText("Please Select an Arena:");
         }
+        if (selectedMonster != null && !selectedMonster.isEmpty()) {
+            // Update the TextView with the selected arena
+            binding.selectedMonsterLabelTextView.setText("Selected Monster: " + selectedMonster);
+        } else {
+            binding.selectedMonsterLabelTextView.setText("Please Select a Monster:");
+        }
+
+
     }
 
 

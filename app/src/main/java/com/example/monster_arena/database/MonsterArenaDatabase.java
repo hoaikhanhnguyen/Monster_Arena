@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {MonsterArena.class, User.class, Battle.class, Arena.class, Monsters.class}, version = 8, exportSchema = false)
+@Database(entities = {MonsterArena.class, User.class, Battle.class, Arena.class, Monsters.class}, version = 9, exportSchema = false)
 public abstract class MonsterArenaDatabase extends RoomDatabase {
 
 
@@ -81,6 +81,15 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
                 dao.insert(monster);
                 monster = new Monsters("Bulbguy", "Grass type monster", 0, 1, 10.0, "Grass", 1,1,1,1, 1.0);
                 dao.insert(monster);
+            });
+            databaseWriteExecutor.execute(() -> {
+                ArenaDAO dao = INSTANCE.arenaDAO();
+                Arena defaultArena = new Arena("Volcano", "Fire");
+                  dao.insert(defaultArena);
+                Arena waterArena = new Arena("Beach", "Water");
+                dao.insert(waterArena);
+                Arena grassArena = new Arena("Jungle", "Grass");
+                dao.insert(grassArena);
             });
         }
     };

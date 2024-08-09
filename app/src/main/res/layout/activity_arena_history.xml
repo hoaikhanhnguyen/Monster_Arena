@@ -7,45 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".ArenaHistory">
 
+
     <TextView
         android:id="@+id/arenaHistoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:padding="8dp"
         android:text="@string/arena_history_results"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="58dp" />
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@id/returnButtonArenaHistory"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/arenaHistoryTextView"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/returnButtonArenaHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:text="@string/click_to_return_arena_history"
-        app:layout_constraintTop_toBottomOf="@id/arenaHistoryTextView"
-        tools:layout_editor_absoluteX="78dp" />
+    <TextView
+        android:id="@+id/arenaListTextView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arenaHistoryTextView" />
 
     <Button
         android:id="@+id/returnToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="176dp"
         android:text="Home"
-        app:layout_constraintTop_toBottomOf="@id/returnButtonBattleHistory"
-        tools:layout_editor_absoluteX="161dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arenaListTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

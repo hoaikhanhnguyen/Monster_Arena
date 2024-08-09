@@ -8,43 +8,19 @@ import com.example.monster_arena.database.MonsterArenaDatabase;
 import java.util.Objects;
 
 @Entity(tableName = MonsterArenaDatabase.ARENA_TABLE)
-
-public class  Arena {
+public class Arena {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String fireArena;
-    private String grassArena;
-    private String waterArena;
+    private String name;
+    private String type;
 
-    public Arena(String fireArena, String grassArena, String waterArena) {
-        this.fireArena = fireArena;
-        this.grassArena = grassArena;
-        this.waterArena = waterArena;
-    }
 
-    public String getFireArena() {
-        return fireArena;
-    }
 
-    public void setFireArena(String fireArena) {
-        this.fireArena = fireArena;
-    }
+    public Arena(String name, String type) {
+        this.name = name;
+        this.type = type;
 
-    public String getGrassArena() {
-        return grassArena;
-    }
-
-    public void setGrassArena(String grassArena) {
-        this.grassArena = grassArena;
-    }
-
-    public String getWaterArena() {
-        return waterArena;
-    }
-
-    public void setWaterArena(String waterArena) {
-        this.waterArena = waterArena;
     }
 
     public int getId() {
@@ -55,18 +31,33 @@ public class  Arena {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Arena arena = (Arena) o;
-        return Objects.equals(fireArena, arena.fireArena) && Objects.equals(grassArena, arena.grassArena) && Objects.equals(waterArena, arena.waterArena);
+        return id == arena.id && Objects.equals(name, arena.name) && Objects.equals(type, arena.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fireArena, grassArena, waterArena);
+        return Objects.hash(id, name, type);
     }
-
-
 }
+

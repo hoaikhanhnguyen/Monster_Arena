@@ -27,7 +27,7 @@ public class ArenaTypes extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
-        createDefaultArenas();
+       // createDefaultArenas();
         binding.fireArenaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,13 +55,21 @@ public class ArenaTypes extends AppCompatActivity {
             }
         });
 
+        binding.arenaHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ArenaHistory.arenaHistoryIntentFactory(getApplicationContext(), userId);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    private void createDefaultArenas() {
+    //private void createDefaultArenas() {
         // Create Arena object with all types of arenas
-        Arena defaultArena = new Arena("Fire Arena", "Grass Arena", "Water Arena");
-        repository.insertNewArena(defaultArena);
-    }
+     //   Arena defaultArena = new Arena("Fire Arena", "Grass Arena", "Water Arena");
+     //   repository.insertNewArena(defaultArena);
+   // }
 
     public static Intent arenaTypesIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, ArenaTypes.class);
