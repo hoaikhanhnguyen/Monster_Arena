@@ -14,6 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.monster_arena.database.MonstersDAO;
 import com.example.monster_arena.database.entities.Monsters;
 import com.example.monster_arena.databinding.ActivityMonstersBinding;
 import com.example.monster_arena.database.MonsterArenaRepository;
@@ -45,6 +47,17 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         setContentView(R.layout.activity_monsters);
 
         getRoomData();
+
+        binding.createNewMonsterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (loggedInUser == 1){
+                    Monsters newMonster = createMonster();
+                    repository.insertMonsters(createMonster());
+                    //startActivity(CreateMonster.createMonsterActivityIntentFactory(getApplicationContext(), loggedInUser));
+                }
+            }
+        });
    }
 
     private void getRoomData() {
@@ -124,24 +137,27 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
     }
 
 
-    private void createMonster(){
+    private Monsters createMonster(){
         int rand = new Random().nextInt(3);
 
                 if (rand == 1){ // random fire
                     int randStat = new Random().nextInt(MAX_RAND);
                     String newMonsterName = "CharMonster";
                     Monsters monster = new Monsters(newMonsterName, "Fire type", loggedInUser, randStat, 10.0, "Fire Type", randStat+2, randStat, randStat+1, randStat, 10);
-                    repository.insertMonsters(monster);
+                    //repository.insertMonsters(monster);
+                    return monster;
                 } else if (rand ==2){   // random water monster
                     int randStat = new Random().nextInt(MAX_RAND);
                     String newMonsterName = "HoserDude";
                     Monsters monster = new Monsters(newMonsterName, "Water type", loggedInUser, randStat, 10.0, "Water Type", randStat+2, randStat, randStat+1, randStat, 10);
-                    repository.insertMonsters(monster);
+                    //repository.insertMonsters(monster);
+                    return monster;
                 }else {     // random grass
                     int randStat = new Random().nextInt(MAX_RAND);
                     String newMonsterName = "Bulbguy";
                     Monsters monster = new Monsters(newMonsterName, "Grass type", loggedInUser, randStat, 10.0, "Grass Type", randStat+2, randStat, randStat+1, randStat, 10);
-                    repository.insertMonsters(monster);
+                    //repository.insertMonsters(monster);
+                    return monster;
                 }
     }
 }

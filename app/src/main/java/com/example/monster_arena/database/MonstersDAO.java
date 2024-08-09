@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface MonstersDAO {
 
-        @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Monsters monsters);
 
     @Delete
