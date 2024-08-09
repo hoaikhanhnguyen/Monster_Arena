@@ -100,6 +100,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Intent intent = getIntent();
+        String selectedArena = intent.getStringExtra("Arena Selected");
+
+        if (selectedArena != null && !selectedArena.isEmpty()) {
+            // Update the TextView with the selected arena
+            binding.selectedArenaLabelTextView.setText("Selected Arena: " + selectedArena);
+        } else {
+            binding.selectedArenaLabelTextView.setText("Please Select an Arena:");
+        }
+    }
+
+
     private void loginUser(Bundle savedInstanceState) {
         // Check shared preferences for logged in user
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.PREFERENCE_FILE_KEY),
@@ -211,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }
+
+
 
     private Monsters randomMonster() {
         Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",10,4,3,5,1.0);
