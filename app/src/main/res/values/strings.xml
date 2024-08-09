@@ -39,4 +39,9 @@
     <string name="monster_info">Monster Info</string>
     <string name="monster_name">Monster Name</string>
     <string name="no_monsters_for_user">\"No Monsters to show.\"</string>
+    <string name="arena_history_results">Arena History Results</string>
+    <string name="click_to_return_arena_history">Click To Return Arena History</string>
+    <string name="choose_your_arena">Choose Your Arena!</string>
+    <string name="fire_arena">Fire Arena</string>
+    <string name="arena_types">Arena Types</string>
 </resources>
