@@ -202,9 +202,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Monsters randomMonster() {
-        Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",10,4,3,5,1.0);
-        Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,3,5,4,1.0);
-        Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,4,5,3,1.0);
+        Monsters monster1 = new Monsters("Firechic", "A flaming chickem.", 99, 3, 30.0,"Fire",2,4,1,40,1.0);
+        Monsters monster2 = new Monsters("Mudslip", "A wet frog.", 99, 3, 30.0,"Water",10,50,5,5,1.0);
+        Monsters monster3 = new Monsters("Woodcko", "A tree-like being.", 99, 3, 30.0,"Grass",10,50,5,5,1.0);
 
         Monsters[] monsters = {monster1, monster2, monster3};
 
@@ -214,8 +214,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String battleLogic(Monsters monster, Monsters enemy) {
-        Monsters first = monster.getAgility() > enemy.getAgility() ? monster : enemy;
-        Monsters second = monster.getAgility() > enemy.getAgility() ? enemy : monster;
+        Monsters first, second;
+        if (monster.getAgility() > enemy.getAgility()) {
+            first = monster;
+            second = enemy;
+        } else {
+            first = enemy;
+            second = monster;
+        }
 
         StringBuilder result = new StringBuilder();
 

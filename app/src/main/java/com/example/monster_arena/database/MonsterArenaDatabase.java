@@ -82,35 +82,6 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
                 monster = new Monsters("Bulbguy", "Grass type monster", 0, 1, 10.0, "Grass", 1,1,1,1, 1.0);
                 dao.insert(monster);
             });
-
-            /*
-             * TODO: Remove after testing battle.
-             * FAKE VALUES FOR TESTING ONLY.
-             */
-            databaseWriteExecutor.execute(() -> {
-                BattleDAO dao = INSTANCE.battleDAO();
-                dao.deleteAll();
-                Battle battle = new Battle("monster","enemy",1,"admin", "fire");
-                dao.insert(battle);
-                battle = new Battle("monsterman","enemyguy",1,"admin", "grass");
-                dao.insert(battle);
-                battle = new Battle("monster2","enemy2",1,"admin", "water");
-                dao.insert(battle);
-                battle = new Battle("monster1","enemy1",1,"admin", "water");
-                dao.insert(battle);
-                battle = new Battle("monsterman2","enemyguy2",1,"admin", "grass");
-                dao.insert(battle);
-                battle = new Battle("monster3","enemy3",1,"admin", "water");
-                dao.insert(battle);
-                battle = new Battle("monster4","enemy4",1,"admin", "water");
-                dao.insert(battle);
-                battle = new Battle("monster2","enemy2",3,"admin2", "water");
-                dao.insert(battle);
-                battle = new Battle("monster1","enemy1",2,"testUser", "water");
-                dao.insert(battle);
-                battle = new Battle("monster3","enemy3",2,"testUser", "grass");
-                dao.insert(battle);
-            });
         }
     };
 
