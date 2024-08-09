@@ -35,7 +35,7 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
     public static final String MONSTERS_TABLE = "monstersTable";
 
     private static volatile MonsterArenaDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
+    private static final int NUMBER_OF_THREADS = 9;
 
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -81,6 +81,15 @@ public abstract class MonsterArenaDatabase extends RoomDatabase {
                 dao.insert(monster);
                 monster = new Monsters("Bulbguy", "Grass type monster", 0, 1, 10.0, "Grass", 1,1,1,1, 1.0);
                 dao.insert(monster);
+            });
+            databaseWriteExecutor.execute(() -> {
+                ArenaDAO dao = INSTANCE.arenaDAO();
+                Arena defaultArena = new Arena("Volcano", "Fire");
+                  dao.insert(defaultArena);
+                Arena waterArena = new Arena("Beach", "Water");
+                dao.insert(waterArena);
+                Arena grassArena = new Arena("Jungle", "Grass");
+                dao.insert(grassArena);
             });
         }
     };
