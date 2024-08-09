@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     static final String SHARED_PREFERENCE_USERID_KEY =" com.example.monster_arena.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE =" com.example.monster_arena.SHARED_PREFERENCE_USERID_VALUE";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.monster_arena.SHARED_INSTANCE_STATE_USERID_KEY";
-
+    String selectedMonsterName = "Selected: ";
     private static final int LOGGED_OUT = -1;
 
     private int loggedInUserId = -1;
@@ -106,13 +106,24 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String selectedArena = intent.getStringExtra("Arena Selected");
+        String selectedMonster = intent.getStringExtra("Selected Monster");
+        int monsterById = getIntent().getIntExtra("Selected_Monster", -1);
 
+        if(monsterById != -1){
+            Monsters monster =  repository.getMonsterById(monsterById);
+            selectedMonster = monster.getName();
+            binding.selectedMonsterLabelTextView.setText(monster.getName());
+        }else {
+            binding.selectedMonsterLabelTextView.setText("Please Select a Monster:");
+        }
         if (selectedArena != null && !selectedArena.isEmpty()) {
             // Update the TextView with the selected arena
             binding.selectedArenaLabelTextView.setText("Selected Arena: " + selectedArena);
         } else {
             binding.selectedArenaLabelTextView.setText("Please Select an Arena:");
         }
+
+
     }
 
 

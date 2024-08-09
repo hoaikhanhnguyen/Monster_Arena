@@ -1,11 +1,13 @@
 package com.example.monster_arena;
 
+import java.util.Locale;
 import java.util.Random;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -24,6 +26,7 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
     private ActivityMonstersBinding binding;
     private MonsterArenaRepository repository;
     private int loggedInUser = -1;
+    static int monsterId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +58,16 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
     }
 
     static Intent manageMonsterActivityIntentFactory(Context context, int loggedInUser){
-        return new Intent(context, MonstersActivity.class);
+                Intent intent = new Intent(context, MonstersActivity.class);
+                intent.putExtra("User_Id", loggedInUser);
+        return intent;
     }
 
     public void onItemClick(int position) {
         showMonsterDialog(position);
     }
+
+
 
     private void showMonsterDialog(int position) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MonstersActivity.this);
@@ -75,13 +82,36 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
             }
         });
 
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+        alertBuilder.setNegativeButton("Select", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {selectMonster(position);
+            }
+        });
+
+        alertBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.dismiss();
             }
         });
+
         alertBuilder.create().show();
+
+    }
+
+    private void selectMonster(int position) {
+        List<Monsters> monsters = repository.getAllMonsters();
+        String monsterName = monsters.get(position).getName();
+        int userId = monsters.get(position).getUser_id();
+        Monsters monster = repository.getMonsterByName(monsterName);
+        monsterId = monsters.get(position).getId();
+        repository.getMonsterById(monsterId);
+        Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+        intent.putExtra("Selected_Monster",monsterId);
+        Toast.makeText(this, String.format(Locale.US,"%s was Selected, with id %d", monsterName,monsterId), Toast.LENGTH_LONG).show();
+        startActivity(intent);
+        //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUser));
     }
 
     private void deleteMonster(int position) {
@@ -90,11 +120,28 @@ public class MonstersActivity extends AppCompatActivity implements Monster_Recyc
         Monsters monster = repository.getMonsterByName(monsterName);
         repository.delete(monster);
         Toast.makeText(this, String.format("%s was deleted", monsterName), Toast.LENGTH_LONG).show();
-        startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), monster.getId()));
+        //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUser));
     }
 
 
     private void createMonster(){
-        int rand = new Random().nextInt(MAX_RAND);
+        int rand = new Random().nextInt(3);
+
+                if (rand == 1){ // random fire
+                    int randStat = new Random().nextInt(MAX_RAND);
+                    String newMonsterName = "CharMonster";
+                    Monsters monster = new Monsters(newMonsterName, "Fire type", loggedInUser, randStat, 10.0, "Fire Type", randStat+2, randStat, randStat+1, randStat, 10);
+                    repository.insertMonsters(monster);
+                } else if (rand ==2){   // random water monster
+                    int randStat = new Random().nextInt(MAX_RAND);
+                    String newMonsterName = "HoserDude";
+                    Monsters monster = new Monsters(newMonsterName, "Water type", loggedInUser, randStat, 10.0, "Water Type", randStat+2, randStat, randStat+1, randStat, 10);
+                    repository.insertMonsters(monster);
+                }else {     // random grass
+                    int randStat = new Random().nextInt(MAX_RAND);
+                    String newMonsterName = "Bulbguy";
+                    Monsters monster = new Monsters(newMonsterName, "Grass type", loggedInUser, randStat, 10.0, "Grass Type", randStat+2, randStat, randStat+1, randStat, 10);
+                    repository.insertMonsters(monster);
+                }
     }
 }

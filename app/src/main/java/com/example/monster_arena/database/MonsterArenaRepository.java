@@ -180,4 +180,11 @@ public class MonsterArenaRepository {
     public LiveData<List<Arena>> getAllArenas() {
         return arenaDAO.getAllArenas();
     }
+
+    public Monsters getMonsterById(int id) {
+        return monstersDAO.getMonsterNameById(id);
+    }
+    public Monsters getMonsterNameById(int id) {
+        return monstersDAO.getMonsterNameById(id);
+    }
 }
